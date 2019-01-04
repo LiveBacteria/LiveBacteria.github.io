@@ -96,7 +96,7 @@ html, body {
   <p id="alert">
 Loading more than 25 may cause the computer to take a while to load. Please be patient.<p>
 <script id="jsbin-javascript">
-let currVersion = "WIPv0.6.0r",
+let currVersion = "WIPv0.6.1r",
 devMode=false;
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
@@ -156,13 +156,34 @@ window.onload = () => {
     start(1);
   });
 
+  document.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    document.getElementById("startPDFApp1").click();
+  }
+});
+
+document.addEventListener("keydown", function(event){
+event.preventDefault();
+if (event.keyCode === 16 && event.keyCode === 17 && event.keyCode === 65){
+	if(devMode === false){
+		devMode = true;
+	    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+		}else{
+			devMode = false;
+			alert("Developer Mode Deactivated");
+		}
+	}
+});
+
   /* Sets the max and min values for dates */
   let dt=new Date(),
-    y = dt.getFullYear();
-  document.querySelector("#date-input").max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  if(devMode){console.log(document.querySelector("#date-input").min);}
-  document.querySelector("#date-input").min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+    y = dt.getFullYear(),
+    dateInput = document.querySelector("#date-input");
+  dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  if(devMode){console.log(dateInput.min);}
+  dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
 
   if(windowURL.indexOf(checkURL) != -1){
     console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
