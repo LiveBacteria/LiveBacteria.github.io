@@ -163,9 +163,37 @@ window.onload = () => {
   }
 });
 
-document.addEventListener("keydown", function(event){
+/* Killed All Keyboard Commands
+ var targArea = document;
+targArea.addEventListener ('keydown',  reportKeyEvent);
+
+function reportKeyEvent (zEvent) {
+    var reportStr   =
+        "The " +
+        ( zEvent.ctrlKey  ? "Control " : "" ) +
+        ( zEvent.shiftKey ? "Shift "   : "" ) +
+        ( zEvent.altKey   ? "Alt "     : "" ) +
+        ( zEvent.metaKey  ? "Meta "    : "" ) +
+        zEvent.code + " " +
+        "key was pressed."
+    ;
+    $("#statusReport").text (reportStr);
+
+    //--- Was a Ctrl-Alt-E combo pressed?
+    if (zEvent.ctrlKey  &&  zEvent.altKey  &&  zEvent.code === "KeyE") {
+        this.hitCnt = ( this.hitCnt || 0 ) + 1;
+        $("#statusReport").after (
+            '<p>Bingo! cnt: ' + this.hitCnt + '</p>'
+        );
+    }
+    zEvent.stopPropagation ();
+    zEvent.preventDefault ()
+}
+*/
+/* Deprecated Not working Combo Actiavator
+document.body.addEventListener("keyup", function(e){
 event.preventDefault();
-if (event.keyCode === 16 && event.keyCode === 17 && event.keyCode === 65){
+if (e.ctrlKey && e.altKey && e.key === "KeyE"){
 	if(devMode === false){
 		devMode = true;
 	    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
@@ -175,6 +203,7 @@ if (event.keyCode === 16 && event.keyCode === 17 && event.keyCode === 65){
 		}
 	}
 });
+*/
 
   /* Sets the max and min values for dates */
   let dt=new Date(),
@@ -193,6 +222,16 @@ if (event.keyCode === 16 && event.keyCode === 17 && event.keyCode === 65){
   }else{
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
   }
+}
+
+let devModeToggle = () => {
+	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") == "admin64"){
+		devMode = true;
+	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+		}else{
+			devMode = false;
+			alert("Developer Mode Deactivated");
+		}
 }
 
 //Starts the task. 
