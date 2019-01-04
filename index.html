@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2019 by LiveBacteria (http://jsbin.com/diwonoxaxo/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <!-- Unknown Script Commented
+  <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
+  -->
+  <!-- JQuery 1.8.3 -->
+  <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+  <!-- JSX - BABEL min -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Driver Log Record Viewer+</title>
+<style id="jsbin-css">
+html, body {
+	/*height: 100%;*/
+}
+#Main{
+  margin: auto;
+  width: 50%;
+  border: 3px solid red;
+  padding: 10px;
+}
+#logo{
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+#alert {
+  margin: auto;
+  width: 50%;
+  border: 3px;
+  padding: 10px;
+  border: 3px dashed red;
+  
+}
+
+#generalInfo {
+  margin: auto;
+  width: 50%;
+  border: 3px;
+  padding: 10px;
+  
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px;
+	}
+  
+.footNotation, .push{
+	color: grey;
+	position: fixed;
+	top: 100vh; left: 0;
+	margin-top: -50px;
+	width: 100%; height: 100px;
+	padding: 10px;
+	color: #fff; background-color: rgba(0,0,0,0.6);
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+<div id="Main">
+  <img id="logo" src="http://winweb.cleanharbors.com/images/logo.gif" alt="cleanharbors logo"></img>
+  <input type="date" id="date-input" tabindex="1" required />
+  <input type="number" id="maxNumberDays" value="10" min="1" max="31" tabindex="2" required />
+  <input type="employeeID" id="employeeID" value="Petrucci, Robert"/>
+  <button id="startPDFApp" tabindex="3">Print PDFs</button>
+  <button id="startPDFApp1" tabindex="4">Load PDFs</button>
+<div id="info"></div>
+
+<!-- Working iFramePdf set
+<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date=20180706&Violations=true&SensorFailures=false" style="displfay:none;"></iframe>
+-->
+
+<!--<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980658&Date=" style="display:none;"></iframe>
+<p>Test Two</p>
+  <a href="https://www.cssparty.com/"  target="_blank">cssparty.com</a> -->
+  </div>
+  <p id="generalInfo">Please be sure you are logged into Telogis, if not please do. <button id="loginButtonVerizon" >Login Here</button></p>
+  <p id="alert">
+Loading more than 25 may cause the computer to take a while to load. Please be patient.<p>
+<script id="jsbin-javascript">
+let currVersion = "WIPv0.5.10319b";
+
+let URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date='),
+  URL = URL_GEN.next().value;
+
+
+/* URL Generator and Date Calculator and Setter */
+function* UrlGenerator(url,dt=new Date()) {
+  while (true){
+    yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+    dt.setDate(dt.getDate()+1); // increase a day
+    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  }
+}
+
+
+// will open x number of new windows containing URL
+//2
+function grabOpenPDF(maxNumberDays) {
+
+  //Set the variable for max days.
+  for (let x = 0; x < maxNumberDays; x++) {
+    console.log("It works: " + x, URL);
+    URL = URL_GEN.next().value;
+    openNewBackgroundTab(URL);
+  }
+/**/
+}
+
+//OpenLoadNew 12 18 2018 Test
+function openNewBackgroundTab(url){
+    var a = document.createElement("a");
+    a.href = url;
+    var evt = document.createEvent("MouseEvents");
+    //the tenth parameter of initMouseEvent sets ctrl key
+    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0,
+                                true, false, false, false, 0, null);
+    a.dispatchEvent(evt);
+}
+
+//copyrightScript and wipDetector and domEventSetter
+window.onload = () => {
+  let windowURL = window.location.href,
+    checkURL = "wip";
+  windowURL = windowURL.toLowerCase();
+
+  //set EventListeners on DOM
+  document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
+    window.open("https://login-cleanharbors.platform.telogis.com/");
+  });
+
+  document.querySelector("#startPDFApp").addEventListener("click", () => {
+    start(0);
+  });
+
+  document.querySelector("#startPDFApp1").addEventListener("click", () => {
+    start(1);
+  });
+
+  /* Sets the max and min values for dates */
+  let dt=new Date(),
+    y = dt.getFullYear();
+  document.querySelector("#date-input").max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  console.log(document.querySelector("#date-input").min);
+  document.querySelector("#date-input").min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+
+  if(windowURL.indexOf(checkURL) != -1){
+    console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
+    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion);
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
+  }else{
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
+  }
+}
+
+//Starts the task. 
+//1
+function start(load) {
+  if(document.querySelector("#maxNumberDays").value > 31){
+    if(confirm("Amount of days entered is high, continue? ")){
+      let startDate = new Date(document.querySelector('#date-input').value);
+  
+  // overwrite global
+  URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
+  URL = URL_GEN.next().value
+  
+  console.log("Current Address: " + URL);
+  if (load === 1) {
+    console.log("Event load active. ");
+    let maxDay = document.querySelector('#maxNumberDays').value;
+    grabOpenPDF(maxDay);
+  } else {
+    //console.log("Event load skip. ")
+    //let maxDay = document.getElementById('maxNumberDays').value;
+    alert("Feature not yet added!");
+    //printTrigger(iFramePdf);
+  }
+    }else{
+      alert("Action Cancelled! ");
+    }
+  }else{
+  let startDate = new Date(document.querySelector('#date-input').value);
+  
+  // overwrite global
+  URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
+  URL = URL_GEN.next().value
+  
+  console.log("Current Address: " + URL);
+  if (load === 1) {
+    console.log("Event load active. ");
+    let maxDay = document.querySelector('#maxNumberDays').value;
+    grabOpenPDF(maxDay);
+  } else {
+    //console.log("Event load skip. ")
+    //let maxDay = document.getElementById('maxNumberDays').value;
+    alert("Feature not yet added!");
+    //printTrigger(iFramePdf);
+    }
+  }
+}
+
+function printTrigger(elementId) {
+    var getMyFrame = document.getElementById(elementId);
+    //getMyFrame.focus();
+    //getMyFrame.contentWindow.print();
+
+    $("#iFramePdf").ready(function() {
+    var body = $("#iFramePdf").contents().find("body");
+    body.append('Test');
+  });
+}
+
+//GrabClean
+
+</script>
+</body>
+<footer>
+<p class="footNotation">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore date, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.4.10319d</p>
+</footer>
+</html>
