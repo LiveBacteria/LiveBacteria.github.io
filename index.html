@@ -96,7 +96,7 @@ html, body {
   <p id="alert">
 Loading more than 25 may cause the computer to take a while to load. Please be patient.<p>
 <script id="jsbin-javascript">
-let currVersion = "WIPv0.5.10419b",
+let currVersion = "WIPv0.6.0r",
 devMode=false;
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
@@ -203,7 +203,7 @@ function start(load) {
   let startDate = new Date(document.querySelector('#date-input').value);
   
   // overwrite global
-  URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
+  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
   URL = URL_GEN.next().value
   
   if(devMode){console.log("Current Address: " + URL);}
@@ -236,6 +236,6 @@ function printTrigger(elementId) {
 </script>
 </body>
 <footer>
-<p class="footNotation">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore date, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.4.10319d</p>
+<p class="footNotation">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore date, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.0.0r</p>
 </footer>
 </html>
