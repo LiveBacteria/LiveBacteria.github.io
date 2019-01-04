@@ -96,7 +96,8 @@ html, body {
   <p id="alert">
 Loading more than 25 may cause the computer to take a while to load. Please be patient.<p>
 <script id="jsbin-javascript">
-let currVersion = "WIPv0.5.10319b";
+let currVersion = "WIPv0.5.10419b",
+devMode=false;
 
 let URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date='),
   URL = URL_GEN.next().value;
@@ -118,7 +119,7 @@ function grabOpenPDF(maxNumberDays) {
 
   //Set the variable for max days.
   for (let x = 0; x < maxNumberDays; x++) {
-    console.log("It works: " + x, URL);
+  	if (devMode) {console.log("It works: " + x, URL);}
     URL = URL_GEN.next().value;
     openNewBackgroundTab(URL);
   }
@@ -159,13 +160,14 @@ window.onload = () => {
   let dt=new Date(),
     y = dt.getFullYear();
   document.querySelector("#date-input").max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  console.log(document.querySelector("#date-input").min);
+  if(devMode){console.log(document.querySelector("#date-input").min);}
   document.querySelector("#date-input").min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
 
   if(windowURL.indexOf(checkURL) != -1){
     console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
-    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion);
+    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+    devMode = true;
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
   }else{
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
@@ -183,9 +185,9 @@ function start(load) {
   URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
   URL = URL_GEN.next().value
   
-  console.log("Current Address: " + URL);
+  if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
-    console.log("Event load active. ");
+    if(devMode){console.log("Event load active. ");}
     let maxDay = document.querySelector('#maxNumberDays').value;
     grabOpenPDF(maxDay);
   } else {
@@ -204,9 +206,9 @@ function start(load) {
   URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
   URL = URL_GEN.next().value
   
-  console.log("Current Address: " + URL);
+  if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
-    console.log("Event load active. ");
+    if(devMode){console.log("Event load active. ");}
     let maxDay = document.querySelector('#maxNumberDays').value;
     grabOpenPDF(maxDay);
   } else {
