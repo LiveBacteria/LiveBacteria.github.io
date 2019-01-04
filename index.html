@@ -10,7 +10,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 <meta name="robots" content="noindex">
 <html>
 <head>
-  <!-- Unknown Script Commented
+  <!-- Unknown Script Commented - Possibly Date.JS
   <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
   -->
   <!-- JQuery 1.8.3 -->
@@ -76,10 +76,10 @@ html, body {
 </head>
 <body>
 <div id="Main">
-  <img id="logo" src="http://winweb.cleanharbors.com/images/logo.gif" alt="cleanharbors logo"></img>
+  <img id="logo" src="https://winweb.cleanharbors.com/images/logo.gif" alt="cleanharbors logo"></img>
   <input type="date" id="date-input" tabindex="1" required />
   <input type="number" id="maxNumberDays" value="10" min="1" max="31" tabindex="2" required />
-  <input type="employeeID" id="employeeID" value="Petrucci, Robert"/>
+  <input type="employeeID" id="employeeID" value="WIP-N/A"/>
   <button id="startPDFApp" tabindex="3">Print PDFs</button>
   <button id="startPDFApp1" tabindex="4">Load PDFs</button>
 <div id="info"></div>
@@ -99,7 +99,7 @@ Loading more than 25 may cause the computer to take a while to load. Please be p
 let currVersion = "WIPv0.5.10419b",
 devMode=false;
 
-let URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date='),
+let URL_GEN = UrlGenerator('WIP_VERSION'),
   URL = URL_GEN.next().value;
 
 
@@ -182,7 +182,7 @@ function start(load) {
       let startDate = new Date(document.querySelector('#date-input').value);
   
   // overwrite global
-  URL_GEN = UrlGenerator('https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=', startDate);
+  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
   URL = URL_GEN.next().value
   
   if(devMode){console.log("Current Address: " + URL);}
