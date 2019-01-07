@@ -10,7 +10,7 @@ function* UrlGenerator(url,dt=new Date()) {
   while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
-    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+(dt.getDate()+1)).padStart(2,'0');
+    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+(dt.getDate())).padStart(2,'0');
   }
 }
 
