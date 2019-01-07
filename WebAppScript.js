@@ -1,4 +1,4 @@
-let currVersion = "WIPv0.7.5r",
+let currVersion = "WIPv0.8.0r",
 devMode=false;
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
@@ -63,6 +63,9 @@ window.onload = () => {
   if (event.keyCode === 13) {
     document.getElementById("startPDFApp1").click();
   }
+
+  let newDiv = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+  document.body.append(newDiv);
 });
 
 /* Killed All Keyboard Commands
