@@ -63,9 +63,14 @@ window.onload = () => {
   if (event.keyCode === 13) {
     document.getElementById("startPDFApp1").click();
   }
-
-  let newDiv = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
-  document.body.append(newDiv);
+  let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+  //document.body.append(newDiv);
+    let sidenav = "sidenav";
+    let newElement = document.createElement("DIV");
+    let body = document.body;
+    newElement.setAttribute('id', sidenav);
+    newElement.innerHTML = html;
+    body.appendChild(newElement);
 });
 
 /* Killed All Keyboard Commands
