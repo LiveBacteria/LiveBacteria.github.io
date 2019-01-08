@@ -68,7 +68,7 @@ window.onload = () => {
     let sidenav = "sidenav";
     let newElement = document.createElement("DIV");
     let body = document.body;
-    newElement.setAttribute('id', sidenav);
+    //newElement.setAttribute('class', sidenav);
     newElement.innerHTML = html;
     body.appendChild(newElement);
 });
