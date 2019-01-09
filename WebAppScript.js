@@ -49,22 +49,22 @@ window.onload = () => {
   windowURL = windowURL.toLowerCase();
 
   //set EventListeners on DOM
-  if(document.querySelector("#loginButtonVerizon") === true){
+  if(document.querySelector("#loginButtonVerizon")){
 		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
 		window.open("https://login-cleanharbors.platform.telogis.com/");
 	  });
   }
-	if(document.querySelector("#startPDFApp") === true){
+	if(document.querySelector("#startPDFApp")){
   document.querySelector("#startPDFApp").addEventListener("click", () => {
     start(0);
   });
 	}
-	if(document.querySelector("#startPDFApp1") === true){
+	if(document.querySelector("#startPDFApp1")){
 	document.querySelector("#startPDFApp1").addEventListener("click", () => {
     start(1);
   });
 	}
-	if(document.getElementById("startPDFApp1") === true){
+	if(document.getElementById("startPDFApp1")){
 		document.addEventListener("keyup", function(event) {
 		event.preventDefault();
 	if (event.keyCode === 13) {
@@ -124,14 +124,18 @@ if (e.ctrlKey && e.altKey && e.key === "KeyE"){
 */
 
   /* Sets the max and min values for dates */
-  let dt=new Date(),
-    y = dt.getFullYear(),
+	if(document.querySelector("#date-input")){
+		let dt=new Date(),
     dateInput = document.querySelector("#date-input");
+		let y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  if(devMode){console.log(dateInput.min);}
+  
+if(devMode){console.log(dateInput.min);}
   dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-
+}else{
+	let dt=new Date(),
+		y = dt.getFullYear();
   if(windowURL.indexOf(checkURL) !== -1){
     console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
     alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
@@ -139,7 +143,8 @@ if (e.ctrlKey && e.altKey && e.key === "KeyE"){
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }else{
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  }
+  	}
+}
 };
 
 function devModeToggle () {
