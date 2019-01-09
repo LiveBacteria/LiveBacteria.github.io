@@ -1,5 +1,8 @@
-let currVersion = "WIPv0.8.0r",
+//'use strict';
+let currVersion = "WIPv0.9.5r",
 devMode=false;
+
+
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
   URL = URL_GEN.next().value;
@@ -46,33 +49,38 @@ window.onload = () => {
   windowURL = windowURL.toLowerCase();
 
   //set EventListeners on DOM
-  document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
-    window.open("https://login-cleanharbors.platform.telogis.com/");
-  });
-
+  if(document.querySelector("#loginButtonVerizon") === true){
+		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
+		window.open("https://login-cleanharbors.platform.telogis.com/");
+	  });
+  }
+	if(document.querySelector("#startPDFApp") === true){
   document.querySelector("#startPDFApp").addEventListener("click", () => {
     start(0);
   });
-
-  document.querySelector("#startPDFApp1").addEventListener("click", () => {
+	}
+	if(document.querySelector("#startPDFApp1") === true){
+	document.querySelector("#startPDFApp1").addEventListener("click", () => {
     start(1);
   });
+	}
+	if(document.getElementById("startPDFApp1") === true){
+		document.addEventListener("keyup", function(event) {
+		event.preventDefault();
+	if (event.keyCode === 13) {
+	  document.getElementById("startPDFApp1").click();
+  	}
+});
 
-  document.addEventListener("keyup", function(event) {
-  event.preventDefault();
-  if (event.keyCode === 13) {
-    document.getElementById("startPDFApp1").click();
-  }
-  let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
-  //document.body.append(newDiv);
-    let sidenav = "sidenav";
+	}
+	let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+  	//document.body.append(newDiv);
+    //let sidenav = "sidenav";
     let newElement = document.createElement("DIV");
     let body = document.body;
     //newElement.setAttribute('class', sidenav);
     newElement.innerHTML = html;
     body.appendChild(newElement);
-});
-
 /* Killed All Keyboard Commands
  var targArea = document;
 targArea.addEventListener ('keydown',  reportKeyEvent);
@@ -124,17 +132,17 @@ if (e.ctrlKey && e.altKey && e.key === "KeyE"){
   dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
 
-  if(windowURL.indexOf(checkURL) != -1){
+  if(windowURL.indexOf(checkURL) !== -1){
     console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
     alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
     devMode = true;
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }else{
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion " + currVersion);
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
-}
+};
 
-let devModeToggle = () => {
+function devModeToggle () {
 	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") == "admin64"){
 		devMode = true;
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
@@ -153,7 +161,7 @@ function start(load) {
   
   // overwrite global
   URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value
+  URL = URL_GEN.next().value;
   
   if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
@@ -174,7 +182,7 @@ function start(load) {
   
   // overwrite global
   URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value
+  URL = URL_GEN.next().value;
   
   if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
