@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.9.5r",
+let currVersion = "WIPv0.10.0a",
 devMode=false;
 
 
@@ -157,13 +157,23 @@ if(devMode){console.log(dateInput.min);}
 };
 
 function devModeToggle () {
-	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") == "admin64"){
+	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
 		devMode = true;
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+      unlockWIPMethods(true);
 		}else{
 			devMode = false;
 			alert("Developer Mode Deactivated");
 		}
+}
+
+function unlockWIPMethods(con){
+  if(con === true){
+    $("#iFramePdf").display="";
+
+  }else{
+    alert("Error in unlocking WIP Methods.");
+  }
 }
 
 //Starts the task. 
@@ -206,8 +216,11 @@ function start(load) {
   } else {
     //console.log("Event load skip. ")
     //let maxDay = document.getElementById('maxNumberDays').value;
-    alert("Feature not yet added!");
-    //printTrigger(iFramePdf);
+    if(devMode === true){
+      printTrigger(iFramePdf);
+    }else{
+      alert("Feature not yet added!");
+    }
     }
   }
 }
