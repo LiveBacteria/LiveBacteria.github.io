@@ -169,7 +169,7 @@ function devModeToggle () {
 
 function unlockWIPMethods(con){
   if(con === true){
-    $("#iFramePdf").display="";
+    $("#iFramePdf").display="block";
 
   }else{
     alert("Error in unlocking WIP Methods.");
