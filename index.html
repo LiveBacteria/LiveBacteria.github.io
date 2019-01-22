@@ -24,6 +24,7 @@
   windowURL = windowURL.toLowerCase();
 
   if(windowURL.indexOf(checkURL) !== -1){
+    js.type = "text/plain"
     js.src = "https://raw.githubusercontent.com/LiveBacteria/LiveBacteria.github.io/wip/WebAppScript.js";
   }else{
     js.src = "/WebAppScript.js";
