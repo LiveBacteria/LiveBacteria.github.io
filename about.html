@@ -8,8 +8,28 @@
   <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
   <!-- JSX - BABEL min -->
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <!-- WebApp Script -->
+  <!-- WebApp Script
   <script src="/WebAppScript.js"></script>
+  -->
+  <!-- Script Selector -->
+  <script>
+  var head = document.getElementsByTagName('head')[0];
+  var js = document.createElement("script");
+
+  let windowURL = window.location.href,
+    checkURL = "wip";
+
+  js.type = "text/javascript";
+  windowURL = windowURL.toLowerCase();
+
+  if(windowURL.indexOf(checkURL) !== -1){
+    js.src = "https://raw.githubusercontent.com/LiveBacteria/LiveBacteria.github.io/wip/WebAppScript.js";
+  }else{
+    js.src = "/WebAppScript.js";
+  }
+  head.appendChild(js);
+  </script>
+  
   <!-- Stylesheet Link -->
   <link href="/CleanStyle.css" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/crane.png"/>
@@ -24,7 +44,9 @@
       <p>I, Tyler Poore <a href = "mailto: tylerpoore2000@gmail.com">email</a>, proclaim that I do not own any images, documents, or general results other than what is produced and, or, intended to be produced by the native code run on this site. In which therefore, should return a Blank or 404 Error Page.</p>
     </div>
     <div>
-      <p>Any code that can be found on, or linked to from, this website was written by me, and or, has an MIT License or similar.</p>
+
+      <p>Any code that can be found on, or linked to from, this website was written by me, and or, has an MIT License or similar.<span> My github can be found <a href="https://github.com/LiveBacteria">here</a>, or under LiveBacteria.</span></p>
+      
       <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </div>
   </div>

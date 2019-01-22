@@ -2,15 +2,37 @@
 <meta name="robots" content="noindex">
 <html>
 <head>
-  <!-- Unknown Script Commented - Possibly Date.JS
+<!-- Unknown Script Commented - Possibly Date.JS
   <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
-  -->
-  <!-- JQuery 1.8.3 -->
+-->
+<!-- JQuery 1.8.3 -->
   <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
-  <!-- JSX - BABEL min -->
+<!-- JSX - BABEL min -->
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <!-- WebApp Script -->
+<!-- WebApp Script 
   <script src="/WebAppScript.js"></script>
+-->
+<!-- Script Selector -->
+  <script>
+  var head = document.getElementsByTagName('head')[0];
+  var js = document.createElement("script");
+
+  let windowURL = window.location.href,
+    checkURL = "wip";
+
+  js.type = "text/javascript";
+  windowURL = windowURL.toLowerCase();
+
+  if(windowURL.indexOf(checkURL) !== -1){
+    js.src = "https://raw.githubusercontent.com/LiveBacteria/LiveBacteria.github.io/wip/WebAppScript.js";
+  }else{
+    js.src = "/WebAppScript.js";
+  }
+  head.appendChild(js);
+  </script>
+  <!-- WIP SCRIPT --
+    <script src="https://raw.githubusercontent.com/LiveBacteria/LiveBacteria.github.io/wip/WebAppScript.js"></script>
+  -->
   <!-- Stylesheet Link -->
   <link href="/CleanStyle.css" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/crane.png"/>
@@ -28,9 +50,8 @@
   <button id="startPDFApp1" tabindex="4">Load PDFs</button>
 <div id="info"></div>
 
-<!-- Working iFramePdf set
-<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date=20180706&Violations=true&SensorFailures=false" style="displfay:none;"></iframe>
--->
+<!-- Working iFramePdf set -->
+<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date=20180706&Violations=true&SensorFailures=false" style="display:none;"></iframe>
 
 <!--<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980658&Date=" style="display:none;"></iframe>
 <p>Test Two</p>

@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.9.5r",
+let currVersion = "WIPv0.11.0a",
 devMode=false;
 
 
@@ -44,10 +44,11 @@ function openNewBackgroundTab(url){
 
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
+  /*
   let windowURL = window.location.href,
     checkURL = "wip";
   windowURL = windowURL.toLowerCase();
-
+  */
   //set EventListeners on DOM
   if(document.querySelector("#loginButtonVerizon")){
 		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
@@ -81,89 +82,45 @@ window.onload = () => {
     //newElement.setAttribute('class', sidenav);
     newElement.innerHTML = html;
     body.appendChild(newElement);
-/* Killed All Keyboard Commands
- var targArea = document;
-targArea.addEventListener ('keydown',  reportKeyEvent);
-
-function reportKeyEvent (zEvent) {
-    var reportStr   =
-        "The " +
-        ( zEvent.ctrlKey  ? "Control " : "" ) +
-        ( zEvent.shiftKey ? "Shift "   : "" ) +
-        ( zEvent.altKey   ? "Alt "     : "" ) +
-        ( zEvent.metaKey  ? "Meta "    : "" ) +
-        zEvent.code + " " +
-        "key was pressed."
-    ;
-    $("#statusReport").text (reportStr);
-
-    //--- Was a Ctrl-Alt-E combo pressed?
-    if (zEvent.ctrlKey  &&  zEvent.altKey  &&  zEvent.code === "KeyE") {
-        this.hitCnt = ( this.hitCnt || 0 ) + 1;
-        $("#statusReport").after (
-            '<p>Bingo! cnt: ' + this.hitCnt + '</p>'
-        );
-    }
-    zEvent.stopPropagation ();
-    zEvent.preventDefault ()
-}
-*/
-/* Deprecated Not working Combo Actiavator
-document.body.addEventListener("keyup", function(e){
-event.preventDefault();
-if (e.ctrlKey && e.altKey && e.key === "KeyE"){
-	if(devMode === false){
-		devMode = true;
-	    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-		}else{
-			devMode = false;
-			alert("Developer Mode Deactivated");
-		}
-	}
-});
-*/
 
   /* Sets the max and min values for dates */
 	if(document.querySelector("#date-input")){
 		let dt=new Date(),
     dateInput = document.querySelector("#date-input");
-		let y = dt.getFullYear();
+		var y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   
 if(devMode){console.log(dateInput.min);}
   dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  if(windowURL.indexOf(checkURL) !== -1){
-    console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
-    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-    devMode = true;
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  }else{
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  	}
-		
 }else{
 	let dt=new Date(),
 		y = dt.getFullYear();
-  if(windowURL.indexOf(checkURL) !== -1){
-    console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
-    alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-    devMode = true;
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  }else{
-    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  	}
-}
+  }
 };
 
 function devModeToggle () {
-	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") == "admin64"){
-		devMode = true;
+  if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
+		  devMode = true;
+      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-		}else{
-			devMode = false;
-			alert("Developer Mode Deactivated");
+      unlockWIPMethods(devMode);
+    }else{
+      devMode = false;
+      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
+			alert("Developer Mode Deactivated:\nLimited Version Active!");
 		}
+}
+
+function unlockWIPMethods(con){
+  console.log("Entered unlock method. " + con);
+  if(con == true){
+    let target = document.querySelector("#iFramePdf");
+    target.setAttribute('style', 'display: block');
+
+  }else{
+    alert("Error in unlocking WIP Methods.");
+  }
 }
 
 //Starts the task. 
@@ -206,8 +163,11 @@ function start(load) {
   } else {
     //console.log("Event load skip. ")
     //let maxDay = document.getElementById('maxNumberDays').value;
-    alert("Feature not yet added!");
-    //printTrigger(iFramePdf);
+    if(devMode === true){
+      printTrigger(iFramePdf);
+    }else{
+      alert("Feature not yet added!");
+    }
     }
   }
 }
@@ -224,3 +184,46 @@ function printTrigger(elementId) {
 }
 
 //GrabClean
+
+/* Killed All Keyboard Commands - To be placed in onLoad Functions */
+/*
+ var targArea = document;
+targArea.addEventListener ('keydown',  reportKeyEvent);
+
+function reportKeyEvent (zEvent) {
+    var reportStr   =
+        "The " +
+        ( zEvent.ctrlKey  ? "Control " : "" ) +
+        ( zEvent.shiftKey ? "Shift "   : "" ) +
+        ( zEvent.altKey   ? "Alt "     : "" ) +
+        ( zEvent.metaKey  ? "Meta "    : "" ) +
+        zEvent.code + " " +
+        "key was pressed."
+    ;
+    $("#statusReport").text (reportStr);
+
+    //--- Was a Ctrl-Alt-E combo pressed?
+    if (zEvent.ctrlKey  &&  zEvent.altKey  &&  zEvent.code === "KeyE") {
+        this.hitCnt = ( this.hitCnt || 0 ) + 1;
+        $("#statusReport").after (
+            '<p>Bingo! cnt: ' + this.hitCnt + '</p>'
+        );
+    }
+    zEvent.stopPropagation ();
+    zEvent.preventDefault ()
+}
+*/
+/* Deprecated Not working Combo Actiavator
+document.body.addEventListener("keyup", function(e){
+event.preventDefault();
+if (e.ctrlKey && e.altKey && e.key === "KeyE"){
+  if(devMode === false){
+    devMode = true;
+      alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+    }else{
+      devMode = false;
+      alert("Developer Mode Deactivated");
+    }
+  }
+});
+*/
