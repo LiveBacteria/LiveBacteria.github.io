@@ -148,7 +148,7 @@ if(devMode){console.log(dateInput.min);}
   if(windowURL.indexOf(checkURL) !== -1){
     console.log(windowURL.toUpperCase() + " and " + checkURL.toUpperCase() + " have matched the search check. ");
     alert("This is a WIP Build, please take caution. \nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-    devMode = true;
+    devModeToggle();
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }else{
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
@@ -160,7 +160,7 @@ function devModeToggle () {
 	if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
 		devMode = true;
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-      unlockWIPMethods(true);
+      unlockWIPMethods(devMode);
 		}else{
 			devMode = false;
 			alert("Developer Mode Deactivated");
@@ -168,8 +168,10 @@ function devModeToggle () {
 }
 
 function unlockWIPMethods(con){
-  if(con === true){
-    $("#iFramePdf").display="block";
+  console.log("Entered unlock method. " + con);
+  if(con == true){
+    let target = document.querySelector("#iFramePdf");
+    target.setAttribute('style', 'display: block');
 
   }else{
     alert("Error in unlocking WIP Methods.");
