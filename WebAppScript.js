@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.11.0a",
+let currVersion = "v0.11.0a",
 devMode=false;
 
 
@@ -89,6 +89,7 @@ window.onload = () => {
     dateInput = document.querySelector("#date-input");
 		var y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   
 if(devMode){console.log(dateInput.min);}
   dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
@@ -96,6 +97,7 @@ if(devMode){console.log(dateInput.min);}
 }else{
 	let dt=new Date(),
 		y = dt.getFullYear();
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
 };
 
