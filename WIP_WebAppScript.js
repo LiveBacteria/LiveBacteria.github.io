@@ -87,7 +87,7 @@ window.onload = () => {
 	if(document.querySelector("#date-input")){
 		let dt=new Date(),
     dateInput = document.querySelector("#date-input");
-		var y = dt.getFullYear();
+		let y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   
 if(devMode){console.log(dateInput.min);}
@@ -96,8 +96,8 @@ if(devMode){console.log(dateInput.min);}
   document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   devModeToggle();  
 }else{
-	let dt=new Date(),
-		y = dt.getFullYear();
+	let dt=new Date();
+	let y = dt.getFullYear();
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
 };
@@ -105,11 +105,15 @@ if(devMode){console.log(dateInput.min);}
 function devModeToggle () {
   if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
 		  devMode = true;
+      let dt=new Date();
+      let y = dt.getFullYear();
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
       unlockWIPMethods(devMode);
     }else{
       devMode = false;
+      let dt=new Date();
+      let y = dt.getFullYear();
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
 			alert("Developer Mode Deactivated:\nLimited Version Active!");
 		}
