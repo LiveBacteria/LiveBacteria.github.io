@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.11.0",
+let currVersion = "WIPv0.12.0",
 devMode=false;
 
 
