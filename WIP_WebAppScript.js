@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.11.0a",
+let currVersion = "WIPv0.11.0",
 devMode=false;
 
 
@@ -107,7 +107,7 @@ function devModeToggle () {
 		  devMode = true;
       let dt=new Date();
       let y = dt.getFullYear();
-      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
+      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "a");
 	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
       unlockWIPMethods(devMode);
     }else{

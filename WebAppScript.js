@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.11.0a",
+let currVersion = "v0.11.0r",
 devMode=false;
 
 
