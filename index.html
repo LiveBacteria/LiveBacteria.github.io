@@ -2,6 +2,8 @@
 <meta name="robots" content="noindex">
 <html>
 <head>
+<!-- PapaParse.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.js"></script>
 <!-- Unknown Script Commented - Possibly Date.JS
   <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
 -->
@@ -48,11 +50,20 @@
   <input type="employeeID" id="employeeID" value="WIP-N/A"/>
   <button id="startPDFApp" tabindex="3">Print PDFs</button>
   <button id="startPDFApp1" tabindex="4">Load PDFs</button>
+  <div id="elInput" style="display:none;">
+    <span>
+      <p>Daily Processor <input type="checkbox" id="listSelector" /></p>
+    </span>
+    <span id="fileInputContainer" style="display:none;">
+      <input type="file" name="fileInput" id="fileInput" accept=".csv" />
+    </span>
+  </div>
 <div id="info"></div>
 
-<!-- Working iFramePdf set -->
-<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date=20180706&Violations=true&SensorFailures=false" style="display:none;"></iframe>
-
+<!-- Working iFramePdf set
+<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/" style="display:none;"></iframe>
+-->
+  
 <!--<iframe id="iFramePdf" src="https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980658&Date=" style="display:none;"></iframe>
 <p>Test Two</p>
   <a href="https://www.cssparty.com/"  target="_blank">cssparty.com</a> -->

@@ -1,6 +1,8 @@
 //'use strict';
-let currVersion = "WIPv0.12.0",
-devMode=false;
+let currVersion = "WIPv0.13.0a",
+    devMode=false,
+    dailyProcess=false,
+    logList = null;
 
 
 
@@ -10,11 +12,43 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 
 /* URL Generator and Date Calculator and Setter */
 function* UrlGenerator(url,dt=new Date()) {
-  while (true){
+  if(dailyProcess){
+     while (true){
+    csvProcessor();
+       for(let x = 0; x < logList.length-1; x++){
+         $("#employeeID")[0].val(logList[x][1]);
+    url = $("#employeeID")[0].val();
+    yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+    dt.setDate(dt.getDate()+1); // increase a day
+    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+       }
+     }
+  }else{
+      while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
     document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
+  }
+}
+
+function csvProcessor () {
+      let files = $("#fileInput")[0].files;
+  //console.log(files);
+      let file = files[0];
+  //console.log(file);
+  //console.log(Papa.parse(file))
+  logList = Papa.parse(file, {
+  complete: function(results) {
+      //console.log(results);
+      return results;
+      /*let listObjectTest = logList.data[0];
+      console.log(logList.data[0][1]);
+      console.log(listObjectTest[0]);
+      */     
+    }
+  });
+  
 }
 
 
@@ -24,7 +58,7 @@ function grabOpenPDF(maxNumberDays) {
 
   //Set the variable for max days.
   for (let x = 0; x < maxNumberDays; x++) {
-  	if (devMode) {console.log("It works: " + x, URL);}
+    if (devMode) {console.log("It works: " + x, URL);}
     URL = URL_GEN.next().value;
     openNewBackgroundTab(URL);
   }
@@ -51,31 +85,31 @@ window.onload = () => {
   */
   //set EventListeners on DOM
   if(document.querySelector("#loginButtonVerizon")){
-		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
-		window.open("https://login-cleanharbors.platform.telogis.com/");
-	  });
+    document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
+    window.open("https://login-cleanharbors.platform.telogis.com/");
+    });
   }
-	if(document.querySelector("#startPDFApp")){
+  if(document.querySelector("#startPDFApp")){
   document.querySelector("#startPDFApp").addEventListener("click", () => {
     start(0);
   });
-	}
-	if(document.querySelector("#startPDFApp1")){
-	document.querySelector("#startPDFApp1").addEventListener("click", () => {
+  }
+  if(document.querySelector("#startPDFApp1")){
+  document.querySelector("#startPDFApp1").addEventListener("click", () => {
     start(1);
   });
-	}
-	if(document.getElementById("startPDFApp1")){
-		document.addEventListener("keyup", function(event) {
-		event.preventDefault();
-	if (event.keyCode === 13) {
-	  document.getElementById("startPDFApp1").click();
-  	}
+  }
+  if(document.getElementById("startPDFApp1")){
+    document.addEventListener("keyup", function(event) {
+    event.preventDefault();
+  if (event.keyCode === 13) {
+    document.getElementById("startPDFApp1").click();
+    }
 });
 
-	}
-	let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
-  	//document.body.append(newDiv);
+  }
+  let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+    //document.body.append(newDiv);
     //let sidenav = "sidenav";
     let newElement = document.createElement("DIV");
     let body = document.body;
@@ -84,10 +118,10 @@ window.onload = () => {
     body.appendChild(newElement);
 
   /* Sets the max and min values for dates */
-	if(document.querySelector("#date-input")){
-		let dt=new Date(),
+  if(document.querySelector("#date-input")){
+    let dt=new Date(),
     dateInput = document.querySelector("#date-input");
-		let y = dt.getFullYear();
+    let y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   
 if(devMode){console.log(dateInput.min);}
@@ -96,35 +130,51 @@ if(devMode){console.log(dateInput.min);}
   document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   devModeToggle();  
 }else{
-	let dt=new Date();
-	let y = dt.getFullYear();
+  let dt=new Date();
+  let y = dt.getFullYear();
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
+  $('input:checkbox').live('change', function(){
+    let target = null;
+    target = document.querySelector("#fileInputContainer");
+    if($(this).is(':checked')){
+      //$("#fileInputContainer").attr('display', 'block');
+      dailyProcess = true;
+      target.setAttribute('style', 'display: block');
+    } else {
+      dailyProcess = false;
+      target.setAttribute('style', 'display: none');
+      //$("#fileInputContainer").attr('display', 'none');
+    }
+});
 };
 
 function devModeToggle () {
   if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
-		  devMode = true;
+      devMode = true;
       let dt=new Date();
       let y = dt.getFullYear();
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "a");
-	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
       unlockWIPMethods(devMode);
     }else{
       devMode = false;
       let dt=new Date();
       let y = dt.getFullYear();
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
-			alert("Developer Mode Deactivated:\nLimited Version Active!");
-		}
+      alert("Developer Mode Deactivated:\nLimited Version Active!");
+    }
 }
 
 function unlockWIPMethods(con){
   console.log("Entered unlock method. " + con);
   if(con == true){
-    let target = document.querySelector("#iFramePdf");
+    let target = null;
+    /*target = document.querySelector("#iFramePdf");
     target.setAttribute('style', 'display: block');
-
+    */
+    target = document.querySelector("#elInput");
+    target.setAttribute('style', 'display: block');
   }else{
     alert("Error in unlocking WIP Methods.");
   }
@@ -136,7 +186,8 @@ function start(load) {
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
-  
+      
+      
   // overwrite global
   URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
   URL = URL_GEN.next().value;
