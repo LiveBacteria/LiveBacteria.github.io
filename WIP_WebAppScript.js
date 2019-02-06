@@ -3,7 +3,7 @@ let currVersion = "WIPv0.14.0",
     devMode=false,
     dailyProcess=false;
 
-var logList = Array(31).fill(null);
+var logList = Array(31).fill(Array(2).fill(null));
 
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
