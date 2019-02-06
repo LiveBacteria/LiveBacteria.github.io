@@ -1,9 +1,9 @@
 //'use strict';
-let currVersion = "WIPv0.13.0a",
+let currVersion = "WIPv0.14.0",
     devMode=false,
-    dailyProcess=false,
-    logList = null;
+    dailyProcess=false;
 
+var logList = Array(31).fill(null);
 
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
@@ -14,10 +14,14 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 function* UrlGenerator(url,dt=new Date()) {
   if(dailyProcess){
      while (true){
-    csvProcessor();
-       for(let x = 0; x < logList.length-1; x++){
-         $("#employeeID")[0].val(logList[x][1]);
-    url = $("#employeeID")[0].val();
+       logList = csvProcessor();
+       console.log("csvAfter");
+       for(let x = 0; x < 30; x++){
+         console.log("Entered For Loop csvLength");
+         $("#employeeID").val(logList.data[x][1]);
+         console.log(logList.data[x][1]);
+         url = $("#employeeID")[0].val();
+         console.log(url + ": is the URL at the moment.");
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
     document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
@@ -33,22 +37,26 @@ function* UrlGenerator(url,dt=new Date()) {
 }
 
 function csvProcessor () {
+  let pop = "test";
       let files = $("#fileInput")[0].files;
   //console.log(files);
       let file = files[0];
-  //console.log(file);
+  console.log(file);
   //console.log(Papa.parse(file))
-  logList = Papa.parse(file, {
+  Papa.parse(file, {
   complete: function(results) {
       //console.log(results);
-      return results;
+      console.log("WTAF")
+      pop = results;
+      console.log(pop)
       /*let listObjectTest = logList.data[0];
       console.log(logList.data[0][1]);
       console.log(listObjectTest[0]);
       */     
     }
   });
-  
+  console.log(pop);
+  return pop;
 }
 
 
@@ -84,8 +92,10 @@ window.onload = () => {
   windowURL = windowURL.toLowerCase();
   */
   //set EventListeners on DOM
-  if(document.querySelector("#loginButtonVerizon")){
-    document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
+  let loginButtonVerizon = document.querySelector("#loginButtonVerizon");
+
+  if(loginButtonVerizon){
+    loginButtonVerizon.addEventListener("click", () => {
     window.open("https://login-cleanharbors.platform.telogis.com/");
     });
   }
