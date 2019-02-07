@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.14.4",
+let currVersion = "WIPv0.15.0",
     devMode=false,
     dailyProcess=false;
 
@@ -14,17 +14,11 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 function* UrlGenerator(url,dt=new Date()) {
   if(dailyProcess){
      while (true){
-       if(devMode){console.log("csvAfter");}
-       for(let x = 0; x < 30; x++){
-         if(devMode){console.log("Entered For Loop csvLength");}
-         $("#employeeID").val(logList[x][1]);
-         console.log(logList[x][1]);
          url = $("#employeeID").val();
-         console.log(url + ": is the URL at the moment.");
+         if(devMode){console.log(url + ": is the URL at the moment.");}
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
-    dt.setDate(dt.getDate()+1); // increase a day
+    dt.setDate(dt.getDate()); // Keeps the same day value, for cycling the logList!
     document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-       }
      }
   }else{
       while (true){
@@ -41,10 +35,9 @@ function csvProcessor () {
   if(devMode){console.log(file);}
   Papa.parse(file, {
   complete: function(results) {
-          {setTimeout(() => {
-            if(devMode){console.log("Results 1 Sample:\nName: " + results.data[0][0] + "\nURL: " + results[0][1]);}
-            logList = results.data;          
-          }, 2500);
+          {
+            logList = results.data;
+            if(devMode){console.log("Results: " + logList[0][1]);}
         }
       }
   });
@@ -54,13 +47,22 @@ function csvProcessor () {
 // will open x number of new windows containing URL
 //2
 function grabOpenPDF(maxNumberDays) {
-
+  csvProcessor();
+  if(dailyProcess){
+    $("#maxNumberDays").val(logList.length);
+  }
   //Set the variable for max days.
   for (let x = 0; x < maxNumberDays; x++) {
+    if(dailyProcess){
+      $("#employeeID").val(logList[x][1]);
+      if(devMode){console.log(logList[x][1]);}
+      if($("#employeeID").val() == null || $("#employeeID").val() == undefined){return alert("An error has occured!\nLine: 56\nFunction: grabOpenPDF");}
+    }
     if (devMode) {console.log("It works: " + x, URL);}
-    URL = URL_GEN.next().value;
+    setTimeout(() => {URL = URL_GEN.next().value;}, 150);
     openNewBackgroundTab(URL);
   }
+  if(devMode){console.log("Finished! " + $("#maxNumberDays").val() + " employees loaded!");}
 /**/
 }
 
@@ -184,7 +186,7 @@ function unlockWIPMethods(con){
 //Starts the task. 
 //1
 function start(load) {
-  if(document.querySelector("#maxNumberDays").value > 31){
+  if(document.querySelector("#maxNumberDays").value > 10 && !dailyProcess){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
       
