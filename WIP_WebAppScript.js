@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.14.3",
+let currVersion = "WIPv0.14.4",
     devMode=false,
     dailyProcess=false;
 
@@ -36,12 +36,9 @@ function* UrlGenerator(url,dt=new Date()) {
 }
 
 function csvProcessor () {
-  let pop = "test";
       let files = $("#fileInput")[0].files;
-  //console.log(files);
       let file = files[0];
   if(devMode){console.log(file);}
-  //console.log(Papa.parse(file))
   Papa.parse(file, {
   complete: function(results) {
           {setTimeout(() => {
