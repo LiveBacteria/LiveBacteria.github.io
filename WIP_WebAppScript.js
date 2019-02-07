@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.14.2",
+let currVersion = "WIPv0.14.3",
     devMode=false,
     dailyProcess=false;
 
@@ -14,15 +14,11 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 function* UrlGenerator(url,dt=new Date()) {
   if(dailyProcess){
      while (true){
-       logList = csvProcessor();
-       let testProcess = () => {
-
-       };
-       console.log("csvAfter");
+       if(devMode){console.log("csvAfter");}
        for(let x = 0; x < 30; x++){
-         console.log("Entered For Loop csvLength");
-         $("#employeeID").val(logList.data[x][1]);
-         console.log(logList.data[x][1]);
+         if(devMode){console.log("Entered For Loop csvLength");}
+         $("#employeeID").val(logList[x][1]);
+         console.log(logList[x][1]);
          url = $("#employeeID").val();
          console.log(url + ": is the URL at the moment.");
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
@@ -50,7 +46,7 @@ function csvProcessor () {
   complete: function(results) {
           {setTimeout(() => {
             if(devMode){console.log("Results 1 Sample:\nName: " + results.data[0][0] + "\nURL: " + results[0][1]);}
-            logList = results;          
+            logList = results.data;          
           }, 2500);
         }
       }
