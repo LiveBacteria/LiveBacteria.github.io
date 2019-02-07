@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "WIPv0.14.0",
+let currVersion = "WIPv0.14.2",
     devMode=false,
     dailyProcess=false;
 
@@ -15,12 +15,15 @@ function* UrlGenerator(url,dt=new Date()) {
   if(dailyProcess){
      while (true){
        logList = csvProcessor();
+       let testProcess = () => {
+
+       };
        console.log("csvAfter");
        for(let x = 0; x < 30; x++){
          console.log("Entered For Loop csvLength");
          $("#employeeID").val(logList.data[x][1]);
          console.log(logList.data[x][1]);
-         url = $("#employeeID")[0].val();
+         url = $("#employeeID").val();
          console.log(url + ": is the URL at the moment.");
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
@@ -41,23 +44,18 @@ function csvProcessor () {
       let files = $("#fileInput")[0].files;
   //console.log(files);
       let file = files[0];
-  console.log(file);
+  if(devMode){console.log(file);}
   //console.log(Papa.parse(file))
   Papa.parse(file, {
   complete: function(results) {
-      //console.log(results);
-      console.log("WTAF")
-      pop = results;
-      console.log(pop)
-      /*let listObjectTest = logList.data[0];
-      console.log(logList.data[0][1]);
-      console.log(listObjectTest[0]);
-      */     
-    }
+          {setTimeout(() => {
+            if(devMode){console.log("Results 1 Sample:\nName: " + results.data[0][0] + "\nURL: " + results[0][1]);}
+            logList = results;          
+          }, 2500);
+        }
+      }
   });
-  console.log(pop);
-  return pop;
-}
+  }
 
 
 // will open x number of new windows containing URL
