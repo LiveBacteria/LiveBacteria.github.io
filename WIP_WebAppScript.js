@@ -49,12 +49,12 @@ function csvProcessor () {
 function grabOpenPDF(maxNumberDays) {
   csvProcessor();
   if(dailyProcess){
-    $("#maxNumberDays").val(logList.length);
+    $("#maxNumberDays").val(31);
   }
   //Set the variable for max days.
   for (let x = 0; x < maxNumberDays; x++) {
     if(dailyProcess){
-      $("#employeeID").val(logList[x][1]);
+      
       if(devMode){console.log(logList[x][1]);}
       if($("#employeeID").val() == null || $("#employeeID").val() == undefined){return alert("An error has occured!\nLine: 56\nFunction: grabOpenPDF");}
     }
@@ -63,7 +63,6 @@ function grabOpenPDF(maxNumberDays) {
     openNewBackgroundTab(URL);
   }
   if(devMode){console.log("Finished! " + $("#maxNumberDays").val() + " employees loaded!");}
-/**/
 }
 
 //OpenLoadNew 12 18 2018 Test
@@ -192,9 +191,13 @@ function start(load) {
       
       
   // overwrite global
-  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value;
+  if(dailyProcess){
+    URL_GEN = UrlGenerator("test", startDate);
+  }else{
+    URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+    URL = URL_GEN.next().value;
   
+  }
   if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
     if(devMode){console.log("Event load active. ");}
