@@ -1,6 +1,8 @@
 //'use strict';
-let currVersion = "v0.11.0r",
-devMode=false;
+let currVersion = "v0.20.0r",
+devMode=false,
+exit=false,
+dvirLogArray = [];
 
 
 
@@ -42,6 +44,43 @@ function openNewBackgroundTab(url){
     a.dispatchEvent(evt);
 }
 
+//DVIR Functionatlity is here
+function setToArray(str){
+  if(str === "" || str === "Log Numbers"){
+    if(typeof str != "number"){
+      alert("Log input cannot be blank!\nLog Input should not contain letters. ");
+    }else{
+      alert("Log input cannot be blank! ");
+    }
+    exit = true;
+    return;
+  }else{
+    dvirLogArray = JSON.parse("[" + str + "]");
+  }
+  return JSON.parse("[" + str + "]");
+}
+
+function callMe(arr){
+  if(exit){return;}
+  let arrLength = arr.length;
+  
+  if(confirm("Large Load Detected: "+arrLength+"\nDo you want to continue?")){
+  workingForLoop(arrLength, arr);
+    }else{
+      return;
+    }
+}
+
+function workingForLoop(count, arr){
+  for(let z = 0; z < count; z++){
+    //console.log("Looped: " + z);
+    console.log("Array Index: " + arr[z]);
+    window.open(
+      "http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z],
+      "_blank");
+  }
+}
+
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
   /*
@@ -50,6 +89,12 @@ window.onload = () => {
   windowURL = windowURL.toLowerCase();
   */
   //set EventListeners on DOM
+  if($("#startAppDVIR")){
+    $("#startAppDVIR").on("click", () => {
+  callMe(setToArray($("#dvirLogInputs").val()));
+});
+  }
+
   if(document.querySelector("#loginButtonVerizon")){
 		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
 		window.open("https://login-cleanharbors.platform.telogis.com/");
@@ -72,9 +117,8 @@ window.onload = () => {
 	  document.getElementById("startPDFApp1").click();
   	}
 });
-
 	}
-	let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+	let html = ('<div class="sidenav"><a href="/index">Home</a><a href="/DVIR_App">DVIR Viewer+</a></div><a href="/about">About</a></div>');
   	//document.body.append(newDiv);
     //let sidenav = "sidenav";
     let newElement = document.createElement("DIV");

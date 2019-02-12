@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DVIR Viewer+</title>
+  <!-- Unknown Script Commented - Possibly Date.JS
+  <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
+  -->
+  <!-- JQuery 1.8.3 -->
+  <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+  <!-- JSX - BABEL min -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- WebApp Script
+  <script src="/WebAppScript.js"></script>
+  -->
+  <!-- Script Selector -->
+  <script>
+  var head = document.getElementsByTagName('head')[0];
+  var js = document.createElement("script");
+
+  let windowURL = window.location.href,
+    checkURL = "wip";
+
+  js.type = "text/javascript";
+  windowURL = windowURL.toLowerCase();
+
+  if(windowURL.indexOf(checkURL) !== -1){
+    js.src = "/WIP_WebAppScript.js";
+  }else{
+    js.src = "/WebAppScript.js";
+  }
+  head.appendChild(js);
+
+  </script>
+  
+  <!-- Stylesheet Link -->
+  <link href="/CleanStyle.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/crane.png"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>DLRV+ - About</title>
+</head>
+<body>
+  <div id="Main">
+    <img id="logo" src="logo.png" alt="freeApp logo" />
+    <div id="appContainer">
+      <button id="startAppDVIR" class="dvirButton">Load DVIRs</button>
+      <input type="text" id="dvirLogInputs" value="Log Numbers" />
+    </div>
+  </div>
+
+  <footer>
+    <p class="footNotation">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore 2019, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.0.0r</p>
+  </footer>
+</body>
+</html>
