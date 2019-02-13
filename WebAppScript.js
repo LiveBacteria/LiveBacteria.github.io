@@ -118,7 +118,7 @@ window.onload = () => {
   	}
 });
 	}
-	let html = ('<div class="sidenav"><a href="/index">Home</a><a href="/DVIR_App">DVIR Viewer+</a><a href="/about">About</a></div>');
+	let html = ('<div class="sidenav"><a href="/index">Home</a><a href="/DVIR_App">Dvir+</a><a href="/DLOG_App">Dlog+</a></div>');
   	//document.body.append(newDiv);
     //let sidenav = "sidenav";
     let newElement = document.createElement("DIV");
