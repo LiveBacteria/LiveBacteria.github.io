@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.20.0r",
+let currVersion = "v0.20.5r",
 devMode=false,
 exit=false,
 dvirLogArray = [];
@@ -44,7 +44,7 @@ function openNewBackgroundTab(url){
     a.dispatchEvent(evt);
 }
 
-//DVIR Functionatlity is here
+//DVIR Functionatlity BEGIN
 function setToArray(str){
   if(str === "" || str === "Log Numbers"){
     if(typeof str != "number"){
@@ -80,6 +80,7 @@ function workingForLoop(count, arr){
       "_blank");
   }
 }
+//DVIR Functionality END
 
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
@@ -90,6 +91,11 @@ window.onload = () => {
   */
   //set EventListeners on DOM
   if($("#startAppDVIR")){
+    $("document.body").on("keyup", (evt) => {
+      if(evt.keyCode === 13){
+        $("#startAppDVIR").click();
+      }
+    });
     $("#startAppDVIR").on("click", () => {
   callMe(setToArray($("#dvirLogInputs").val()));
 });
