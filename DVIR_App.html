@@ -40,20 +40,20 @@
   <title>DLRV+ - About</title>
 </head>
 <body>
-  <div id="Main">
-    <img id="logo" src="logo.png" alt="freeApp logo" />
+  <div id="Main" draggable="false">
+    <img id="logo" src="logo.png" alt="freeApp logo" draggable="false" class="unselectable" />
     <div id="appContainer">
       <button id="startAppDVIR" class="dvirButton" tabindex="1">Load DVIRs</button>
       <input type="text" id="dvirLogInputs" value="Log Numbers" tabindex="0" />
     </div>
     <div>
       <span id="generalInfo">
-        <p>
+        <p class="unselectable">
           Loading more than 5 in a single process may cause most computers to freeze or become unresponsive for a prolonged amount of time.
         </p>
       </span>
       <span>
-        <p id="alert">
+        <p id="alert" class="unselectable">
           This app should only be used when the internal DVIR web app for Clean Harbors is not, (a) efficient, (b) correctly loading or displaying, (c) producing a desired result. As this code, and or app, is not licensed by &copyClean Harbors or any affilitate company, any data passed into this application can not be confirmed to be secure other than by the technologies provided passively by <a href="https://pages.github.com" target="_blank">&copyGithub Pages</a>, and programmaticaly implemented features by <a href="https://livebacteria.github.io/" target="_blank">&copyTyler Poore</a>.
         </p>
       </span>
@@ -61,7 +61,7 @@
   </div>
 
   <footer>
-    <p class="footNotation">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore 2019, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.0.0r</p>
+    <p class="footNotation unselectable">All Rights Reserved. Released under the MIT license. Copyright Tyler Poore 2019, created for general use Clean Harbors&copy; in-house. Logos and Images used are owned, and or managed by Clean Harbors&copy;.<br>AppVersion 0.0.0r</p>
   </footer>
 </body>
 </html>
