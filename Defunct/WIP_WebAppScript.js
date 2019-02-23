@@ -1,9 +1,9 @@
 //'use strict';
-let currVersion = "v0.21.5a",
-devMode=false,
-exit=false,
-dvirLogArray = [];
+let currVersion = "WIPv0.15.0",
+    devMode=false,
+    dailyProcess=false;
 
+var logList = Array(31).fill(Array(2).fill(null));
 
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
@@ -12,25 +12,57 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 
 /* URL Generator and Date Calculator and Setter */
 function* UrlGenerator(url,dt=new Date()) {
-  while (true){
+  if(dailyProcess){
+     while (true){
+         url = $("#employeeID").val();
+         if(devMode){console.log(url + ": is the URL at the moment.");}
+    yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+    dt.setDate(dt.getDate()); // Keeps the same day value, for cycling the logList!
+    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+     }
+  }else{
+      while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
     document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
+  }
 }
+
+function csvProcessor () {
+      let files = $("#fileInput")[0].files;
+      let file = files[0];
+  if(devMode){console.log(file);}
+  Papa.parse(file, {
+  complete: function(results) {
+          {
+            logList = results.data;
+            if(devMode){console.log("Results: " + logList[0][1]);}
+        }
+      }
+  });
+  }
 
 
 // will open x number of new windows containing URL
 //2
 function grabOpenPDF(maxNumberDays) {
-
+  csvProcessor();
+  if(dailyProcess){
+    $("#maxNumberDays").val(31);
+  }
   //Set the variable for max days.
   for (let x = 0; x < maxNumberDays; x++) {
-  	if (devMode) {console.log("It works: " + x, URL);}
-    URL = URL_GEN.next().value;
+    if(dailyProcess){
+      
+      if(devMode){console.log(logList[x][1]);}
+      if($("#employeeID").val() == null || $("#employeeID").val() == undefined){return alert("An error has occured!\nLine: 56\nFunction: grabOpenPDF");}
+    }
+    if (devMode) {console.log("It works: " + x, URL);}
+    setTimeout(() => {URL = URL_GEN.next().value;}, 150);
     openNewBackgroundTab(URL);
   }
-/**/
+  if(devMode){console.log("Finished! " + $("#maxNumberDays").val() + " employees loaded!");}
 }
 
 //OpenLoadNew 12 18 2018 Test
@@ -44,77 +76,6 @@ function openNewBackgroundTab(url){
     a.dispatchEvent(evt);
 }
 
-//DVIR Functionatlity BEGIN
-function clearLoaded () {
-  for(let i = 0; i < 200; i++){$("#iframe"+i).remove()}
-  if(devMode){console.log("Element Clear Complete");}
-}
-
-function setToArray(str){
-  if(str === "" || str === "Log Numbers"){
-    if(typeof str != "number"){
-      alert("Log input cannot be blank!\nLog Input should not contain letters. ");
-    }else{
-      alert("Log input cannot be blank! ");
-    }
-    exit = true;
-    return;
-  }else{
-    dvirLogArray = JSON.parse("[" + str + "]");
-  }
-  return JSON.parse("[" + str + "]");
-}
-
-function callMe(arr){
-  if(exit){return;}
-  let arrLength = arr.length;
-  
-  if(arrLength > 5){
-    if(confirm("Large Load Detected: "+arrLength+"\nDo you want to continue?")){
-      workingForLoop(arrLength, arr);
-    }
-    }else{
-      return;
-    }
-}
-
-function workingForLoop(count, arr){
-  if(devMode && $("#loadInsideCheckbox").is(":checked")){
-    let dvirFrame = "<iframe src='' id=''></iframe>";
-    let targetStart = $("#alert");
-    let dvirTarget = "";
-    for(let z = 0; z < count; z++){
-    dvirFrame = "<iframe src='' id='iframe" + z + "'></iframe>";
-
-    if(devMode){console.log(dvirFrame);}
-
-      //console.log("Looped: " + z);
-      if(devMode){console.log("Array Index: " + arr[z]);}
-      //console.log("Working as intended!");
-
-      targetStart.after(dvirFrame);
-      //if(devMode){console.log(targetStart);}
-      
-      dvirTarget = $('#iframe'+z);
-      //if(devMode){console.log(dvirTarget);}
-
-      dvirTarget.attr("src","http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z]);
-      
-      /** DEFUNCT **/
-      //dvirTarget.attr("id","iframe"+z);
-    }
-    }else{
-      for(let z = 0; z < count; z++){
-      //console.log("Looped: " + z);
-      console.log("Array Index: " + arr[z]);
-      window.open(
-        "http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z],
-        "_blank");
-    }
-  }
-}
-//DVIR Functionality END
-
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
   /*
@@ -123,46 +84,34 @@ window.onload = () => {
   windowURL = windowURL.toLowerCase();
   */
   //set EventListeners on DOM
-  if($("#startAppDVIR")){
-    $("#clearFramesBtn").on("click", () => {
-      clearLoaded();
-    });
+  let loginButtonVerizon = document.querySelector("#loginButtonVerizon");
 
-    $("document.body").on("keyup", (evt) => {
-      if(evt.keyCode === 13){
-        $("#startAppDVIR").click();
-      }
+  if(loginButtonVerizon){
+    loginButtonVerizon.addEventListener("click", () => {
+    window.open("https://login-cleanharbors.platform.telogis.com/");
     });
-    $("#startAppDVIR").on("click", () => {
-  callMe(setToArray($("#dvirLogInputs").val()));
-});
   }
-
-  if(document.querySelector("#loginButtonVerizon")){
-		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
-		window.open("https://login-cleanharbors.platform.telogis.com/");
-	  });
-  }
-	if(document.querySelector("#startPDFApp")){
+  if(document.querySelector("#startPDFApp")){
   document.querySelector("#startPDFApp").addEventListener("click", () => {
     start(0);
   });
-	}
-	if(document.querySelector("#startPDFApp1")){
-	document.querySelector("#startPDFApp1").addEventListener("click", () => {
+  }
+  if(document.querySelector("#startPDFApp1")){
+  document.querySelector("#startPDFApp1").addEventListener("click", () => {
     start(1);
   });
-	}
-	if(document.getElementById("startPDFApp1")){
-		document.addEventListener("keyup", function(event) {
-		event.preventDefault();
-	if (event.keyCode === 13) {
-	  document.getElementById("startPDFApp1").click();
-  	}
+  }
+  if(document.getElementById("startPDFApp1")){
+    document.addEventListener("keyup", function(event) {
+    event.preventDefault();
+  if (event.keyCode === 13) {
+    document.getElementById("startPDFApp1").click();
+    }
 });
-	}
-	let html = ('<div class="sidenav"><a href="/">Home</a><a href="/DVIR_App">Dvir+</a><a href="/DLOG_App">Dlog+</a></div>');
-  	//document.body.append(newDiv);
+
+  }
+  let html = ('<div class="sidenav"><a href="index.html">Home</a><a href="about.html">About</a></div>');
+    //document.body.append(newDiv);
     //let sidenav = "sidenav";
     let newElement = document.createElement("DIV");
     let body = document.body;
@@ -171,42 +120,63 @@ window.onload = () => {
     body.appendChild(newElement);
 
   /* Sets the max and min values for dates */
-	if(document.querySelector("#date-input")){
-		let dt=new Date(),
+  if(document.querySelector("#date-input")){
+    let dt=new Date(),
     dateInput = document.querySelector("#date-input");
-		var y = dt.getFullYear();
+    let y = dt.getFullYear();
   dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   
 if(devMode){console.log(dateInput.min);}
   dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
+  devModeToggle();  
 }else{
-	let dt=new Date();
-	var y = dt.getFullYear();
+  let dt=new Date();
+  let y = dt.getFullYear();
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
+  $('input:checkbox').live('change', function(){
+    let target = null;
+    target = document.querySelector("#fileInputContainer");
+    if($(this).is(':checked')){
+      //$("#fileInputContainer").attr('display', 'block');
+      dailyProcess = true;
+      target.setAttribute('style', 'display: block');
+    } else {
+      dailyProcess = false;
+      target.setAttribute('style', 'display: none');
+      //$("#fileInputContainer").attr('display', 'none');
+    }
+});
 };
 
 function devModeToggle () {
   if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
-		  devMode = true;
-      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+      devMode = true;
+      let dt=new Date();
+      let y = dt.getFullYear();
+      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "a");
+    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
       unlockWIPMethods(devMode);
     }else{
       devMode = false;
+      let dt=new Date();
+      let y = dt.getFullYear();
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
-			alert("Developer Mode Deactivated:\nLimited Version Active!");
-		}
+      alert("Developer Mode Deactivated:\nLimited Version Active!");
+    }
 }
 
 function unlockWIPMethods(con){
   console.log("Entered unlock method. " + con);
   if(con == true){
-    let target = document.querySelector("#iFramePdf");
+    let target = null;
+    /*target = document.querySelector("#iFramePdf");
     target.setAttribute('style', 'display: block');
-
+    */
+    target = document.querySelector("#elInput");
+    target.setAttribute('style', 'display: block');
   }else{
     alert("Error in unlocking WIP Methods.");
   }
@@ -215,14 +185,19 @@ function unlockWIPMethods(con){
 //Starts the task. 
 //1
 function start(load) {
-  if(document.querySelector("#maxNumberDays").value > 31){
+  if(document.querySelector("#maxNumberDays").value > 10 && !dailyProcess){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
-  
+      
+      
   // overwrite global
-  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value;
+  if(dailyProcess){
+    URL_GEN = UrlGenerator("test", startDate);
+  }else{
+    URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+    URL = URL_GEN.next().value;
   
+  }
   if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
     if(devMode){console.log("Event load active. ");}

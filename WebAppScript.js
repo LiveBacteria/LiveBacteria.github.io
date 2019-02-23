@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.20.5r",
+let currVersion = "v0.21.0r",
 devMode=false,
 exit=false,
 dvirLogArray = [];
