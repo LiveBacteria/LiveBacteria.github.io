@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.21.5a",
+let currVersion = "v0.22.0a",
 devMode=false,
 exit=false,
 dvirLogArray = [];
@@ -154,7 +154,7 @@ window.onload = () => {
     start(1);
   });
 	}
-	if($("startPDFApp1".length){
+	if($("#startPDFApp1").length){
 		document.addEventListener("keyup", function(event) {
 		event.preventDefault();
 	if (event.keyCode === 13) {
