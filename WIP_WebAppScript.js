@@ -117,13 +117,14 @@ function workingForLoop(count, arr){
 
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
+  devModeToggle();
   /*
   let windowURL = window.location.href,
     checkURL = "wip";
   windowURL = windowURL.toLowerCase();
   */
   //set EventListeners on DOM
-  if($("#startAppDVIR")){
+  if($("#startAppDVIR").length){
     $("#clearFramesBtn").on("click", () => {
       clearLoaded();
     });
@@ -138,22 +139,22 @@ window.onload = () => {
 });
   }
 
-  if(document.querySelector("#loginButtonVerizon")){
+  if($("#loginButtonVerizon").length){
 		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
-		window.open("https://login-cleanharbors.platform.telogis.com/");
+		window.open("$https://login-cleanharbors.platform.telogis.com/");
 	  });
   }
-	if(document.querySelector("#startPDFApp")){
+	if($("#startPDFApp").length){
   document.querySelector("#startPDFApp").addEventListener("click", () => {
     start(0);
   });
 	}
-	if(document.querySelector("#startPDFApp1")){
+	if($("#startPDFApp1").length){
 	document.querySelector("#startPDFApp1").addEventListener("click", () => {
     start(1);
   });
 	}
-	if(document.getElementById("startPDFApp1")){
+	if($("startPDFApp1".length){
 		document.addEventListener("keyup", function(event) {
 		event.preventDefault();
 	if (event.keyCode === 13) {
@@ -171,7 +172,7 @@ window.onload = () => {
     body.appendChild(newElement);
 
   /* Sets the max and min values for dates */
-	if(document.querySelector("#date-input")){
+	if($("#date-input").length){
 		let dt=new Date(),
     dateInput = document.querySelector("#date-input");
 		var y = dt.getFullYear();
@@ -189,6 +190,8 @@ if(devMode){console.log(dateInput.min);}
 };
 
 function devModeToggle () {
+  let dt=new Date();
+  var y = dt.getFullYear();
   if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
 		  devMode = true;
       document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
@@ -204,9 +207,10 @@ function devModeToggle () {
 function unlockWIPMethods(con){
   console.log("Entered unlock method. " + con);
   if(con == true){
-    let target = document.querySelector("#iFramePdf");
-    target.setAttribute('style', 'display: block');
-
+    if($("#iFramePdf").length){
+      let target = document.querySelector("#iFramePdf");
+      target.setAttribute('style', 'display: block');
+    }
   }else{
     alert("Error in unlocking WIP Methods.");
   }
