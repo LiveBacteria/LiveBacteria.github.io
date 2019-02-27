@@ -88,7 +88,8 @@ function workingForLoop(count, arr){
     let targetStart = $("#frameContainer");
     let dvirTarget = "";
     for(let z = 0; z < count; z++){
-    dvirFrame = "<div id='iframeDIV"+ z +"' style='padding: 5px'><b id='iframeText"+ z +"'><b id='frameText"+z"></b><iframe src='' id='iframe" + z + "'style='border: solid red; width: 200px; height: 100px; padding: 10px;''></iframe></div>";
+    //dvirFrame = "<div id='iframeDIV"+ z +"' style='padding: 5px'><b id='iframeText"+ z +"'></b><iframe src='' id='iframe" + z + "'style='border: solid red; width: 200px; height: 100px; padding: 10px;''></iframe></div>";
+    dvirFrame = "<div id='iFrameDIV" + z +"' style='padding: 5px'><b id='iframeText" + z + "'></b><iframe id='iframe" + z + "' src='' style='border: solid red; width: 200px; height: 100px; padding: 10px'></iframe></div>";
 
     if(devMode){console.log(dvirFrame);}
 
