@@ -15,22 +15,31 @@
   <script src="/WebAppScript.js"></script>
 -->
 <!-- Script Selector -->
-  <script>
-  var head = document.getElementsByTagName('head')[0];
-  var js = document.createElement("script");
+ <script>
+    var head = document.getElementsByTagName('head')[0];
+    var js = document.createElement("script");
 
-  let windowURL = window.location.href,
-    checkURL = "wip";
+    let windowURL = window.location.href,
+      checkURL = "wip",
+      checkURL2 = "livebacteria";
 
-  js.type = "text/javascript";
-  windowURL = windowURL.toLowerCase();
+    js.type = "text/javascript";
+    windowURL = windowURL.toLowerCase();
 
-  if(windowURL.indexOf(checkURL) !== -1){
-    js.src = "/WIP_WebAppScript.js";
-  }else{
-    js.src = "/WebAppScript.js";
-  }
-  head.appendChild(js);
+    if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) === -1){
+      if(confirm("This is not a native, recognized, or supported URL.\nContinue anyways?")){
+        js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
+        $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
+        setTimeout(() => {
+          devModeToggle();
+        },1000);
+      }else{
+      js.src = "/WIP_WebAppScript.js";
+    }
+    }else{
+      js.src = "/WebAppScript.js";
+    }
+    head.appendChild(js);
   </script>
   <!-- WIP SCRIPT --
     <script src="https://raw.githubusercontent.com/LiveBacteria/LiveBacteria.github.io/wip/WebAppScript.js"></script>
