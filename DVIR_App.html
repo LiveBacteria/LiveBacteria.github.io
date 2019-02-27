@@ -24,8 +24,8 @@
     js.type = "text/javascript";
     windowURL = windowURL.toLowerCase();
 
-    if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) !== -1){
-      if(confirm("This is not a native, nor recognized URL.\nContinue anyways?")){
+    if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) === -1){
+      if(confirm("This is not a native, recognized, or supported URL.\nContinue anyways?")){
         js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
         $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
         setTimeout(() => {
