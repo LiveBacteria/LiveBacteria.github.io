@@ -46,7 +46,8 @@ function openNewBackgroundTab(url){
 
 //DVIR Functionatlity BEGIN
 function clearLoaded () {
-  for(let i = 0; i < 200; i++){$("#iframe"+i).remove()}
+  $("#dvirLogInputs").val("");
+  for(let i = 0; i < 200; i++){$("#iframeDIV"+i).remove()}
   if(devMode){console.log("Element Clear Complete");}
 }
 
@@ -72,19 +73,22 @@ function callMe(arr){
   if(arrLength > 5){
     if(confirm("Large Load Detected: "+arrLength+"\nDo you want to continue?")){
       workingForLoop(arrLength, arr);
-    }
+      }else{
+        return;
+      }
     }else{
-      return;
+      workingForLoop(arrLength, arr);
     }
 }
+
 
 function workingForLoop(count, arr){
   if(devMode && $("#loadInsideCheckbox").is(":checked")){
     let dvirFrame = "<iframe src='' id=''></iframe>";
-    let targetStart = $("#alert");
+    let targetStart = $("#frameContainer");
     let dvirTarget = "";
     for(let z = 0; z < count; z++){
-    dvirFrame = "<iframe src='' id='iframe" + z + "'></iframe>";
+    dvirFrame = "<div id='iframeDIV"+ z +"' style='padding: 5px'><b id='iframeText"+ z +"'><b id='frameText"+z"></b><iframe src='' id='iframe" + z + "'style='border: solid red; width: 200px; height: 100px; padding: 10px;''></iframe></div>";
 
     if(devMode){console.log(dvirFrame);}
 
@@ -98,6 +102,7 @@ function workingForLoop(count, arr){
       dvirTarget = $('#iframe'+z);
       //if(devMode){console.log(dvirTarget);}
 
+      $("#iframeText"+z).text(arr[z]);
       dvirTarget.attr("src","http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z]);
       
       /** DEFUNCT **/
@@ -118,6 +123,26 @@ function workingForLoop(count, arr){
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
   devModeToggle();
+
+  let windowURL = window.location.href,
+  checkURL = "livebacteria";
+  windowURL = windowURL.toLowerCase();
+  if(windowURL.indexOf(checkURL) !== -1){
+    var head = document.getElementsByTagName('head')[0];
+    var js = document.createElement("script");
+    js.type = "text/javascript";
+
+    if(prompt("This is not a native, nor recognized URL.\nContinue anyways?")){
+      js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
+      head.appendChild(js);
+      $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
+
+      devModeToggle();
+    }else{
+      window.open("https://google.com");
+    }
+  }
+
   /*
   let windowURL = window.location.href,
     checkURL = "wip";
