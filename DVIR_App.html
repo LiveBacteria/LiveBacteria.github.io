@@ -14,6 +14,25 @@
   -->
   <!-- Script Selector -->
   <script>
+      let windowURL = window.location.href,
+  checkURL2 = "livebacteria";
+  windowURL2 = windowURL.toLowerCase();
+  if(windowURL2.indexOf(checkURL2) !== -1){
+    var head = document.getElementsByTagName('head')[0];
+    var js = document.createElement("script");
+    js.type = "text/javascript";
+
+    if(confirm("This is not a native, nor recognized URL.\nContinue anyways?")){
+      js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
+      head.appendChild(js);
+      $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
+
+      devModeToggle();
+    }else{
+      window.open("https://google.com");
+    }
+  }
+
   var head = document.getElementsByTagName('head')[0];
   var js = document.createElement("script");
 
@@ -29,7 +48,6 @@
     js.src = "/WebAppScript.js";
   }
   head.appendChild(js);
-
   </script>
   
   <!-- Stylesheet Link -->

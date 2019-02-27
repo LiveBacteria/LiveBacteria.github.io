@@ -124,26 +124,6 @@ function workingForLoop(count, arr){
 //copyrightScript and wipDetector and domEventSetter
 window.onload = () => {
   devModeToggle();
-
-  let windowURL = window.location.href,
-  checkURL = "livebacteria";
-  windowURL = windowURL.toLowerCase();
-  if(windowURL.indexOf(checkURL) !== -1){
-    var head = document.getElementsByTagName('head')[0];
-    var js = document.createElement("script");
-    js.type = "text/javascript";
-
-    if(prompt("This is not a native, nor recognized URL.\nContinue anyways?")){
-      js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
-      head.appendChild(js);
-      $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
-
-      devModeToggle();
-    }else{
-      window.open("https://google.com");
-    }
-  }
-
   /*
   let windowURL = window.location.href,
     checkURL = "wip";
