@@ -3,7 +3,7 @@ let currVersion = "v0.23.0",
 devMode=false,
 exit=false,
 dvirLogArray = [];
-var logList = Array(31).fill(Array(2).fill(null)),
+var logList,
 dailyProcess=false;
 
 
@@ -49,14 +49,25 @@ function csvProcessor () {
 // will open x number of new windows containing URL
 //2
 function grabOpenPDF(maxNumberDays) {
-
-  //Set the variable for max days.
-  for (let x = 0; x < maxNumberDays; x++) {
-  	if (devMode) {console.log("It works: " + x, URL);}
-    URL = URL_GEN.next().value;
-    openNewBackgroundTab(URL);
-  }
-/**/
+  csvProcessor();
+  setTimeout(() => {
+      if(dailyProcess){
+      $("#maxNumberDays").val(7);
+    }
+    //Set the variable for max days.
+    for (let x = 0; x < maxNumberDays; x++) {
+      if(dailyProcess){
+        publicUrl = logList[x][1];
+        $("#employeeID").val(logList[x][0]);
+        if(devMode){console.log(logList[x][1]);}
+        if($("#employeeID").val() == null || $("#employeeID").val() == undefined){return alert("An error has occured!\nLine: 49\nFunction: grabOpenPDF");}
+      }
+      if (devMode) {console.log("It works: " + x, URL);}
+      setTimeout(() => {URL = URL_GEN.next().value;}, 150);
+      openNewBackgroundTab(URL);
+    }
+    if(devMode){console.log("Finished! " + $("#maxNumberDays").val() + " employees loaded!");}
+  },500);
 }
 
 //OpenLoadNew 12 18 2018 Test
