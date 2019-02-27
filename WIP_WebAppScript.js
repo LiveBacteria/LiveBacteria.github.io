@@ -3,6 +3,8 @@ let currVersion = "v0.23.0",
 devMode=false,
 exit=false,
 dvirLogArray = [];
+var logList = Array(31).fill(Array(2).fill(null)),
+dailyProcess=false;
 
 
 
@@ -12,12 +14,36 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 
 /* URL Generator and Date Calculator and Setter */
 function* UrlGenerator(url,dt=new Date()) {
-  while (true){
+  if(dailyProcess){
+     while (true){
+      url = publicUrl;
+         if(devMode){console.log(url + ": is the URL at the moment.");}
+    yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+    dt.setDate(dt.getDate()); // Keeps the same day value, for cycling the logList!
+    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+     }
+  }else{
+      while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
     document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
+  }
 }
+
+function csvProcessor () {
+      let files = $("#fileInput")[0].files;
+      let file = files[0];
+  if(devMode){console.log(file);}
+  Papa.parse(file, {
+  complete: function(results) {
+          {
+            logList = results.data;
+            if(devMode){console.log("Results: " + logList[0][1]);}
+        }
+      }
+  });
+  }
 
 
 // will open x number of new windows containing URL
@@ -226,14 +252,19 @@ function unlockWIPMethods(con){
 //Starts the task. 
 //1
 function start(load) {
-  if(document.querySelector("#maxNumberDays").value > 31){
+  if(document.querySelector("#maxNumberDays").value > 10 && !dailyProcess){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
-  
+      
+      
   // overwrite global
-  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value;
+  if(dailyProcess){
+    URL_GEN = UrlGenerator("test", startDate);
+  }else{
+    URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+    URL = URL_GEN.next().value;
   
+  }
   if(devMode){console.log("Current Address: " + URL);}
   if (load === 1) {
     if(devMode){console.log("Event load active. ");}
