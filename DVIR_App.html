@@ -14,40 +14,30 @@
   -->
   <!-- Script Selector -->
   <script>
-      let windowURL2 = window.location.href,
-  checkURL2 = "livebacteria";
-  windowURL2 = windowURL2.toLowerCase();
-  if(windowURL2.indexOf(checkURL2) !== -1){
     var head = document.getElementsByTagName('head')[0];
     var js = document.createElement("script");
+
+    let windowURL = window.location.href,
+      checkURL = "wip",
+      checkURL2 = "livebacteria";
+
     js.type = "text/javascript";
+    windowURL = windowURL.toLowerCase();
 
-    if(confirm("This is not a native, nor recognized URL.\nContinue anyways?")){
-      js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
-      head.appendChild(js);
-      $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
-
-      devModeToggle();
-    }else{
-      window.open("https://google.com");
+    if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) !== -1){
+      if(confirm("This is not a native, nor recognized URL.\nContinue anyways?")){
+        js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
+        $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
+        setTimeout(() => {
+          devModeToggle();
+        },1000);
+      }else{
+      js.src = "/WIP_WebAppScript.js";
     }
-  }
-
-  var head = document.getElementsByTagName('head')[0];
-  var js = document.createElement("script");
-
-  let windowURL = window.location.href,
-    checkURL = "wip";
-
-  js.type = "text/javascript";
-  windowURL = windowURL.toLowerCase();
-
-  if(windowURL.indexOf(checkURL) !== -1){
-    js.src = "/WIP_WebAppScript.js";
-  }else{
-    js.src = "/WebAppScript.js";
-  }
-  head.appendChild(js);
+    }else{
+      js.src = "/WebAppScript.js";
+    }
+    head.appendChild(js);
   </script>
   
   <!-- Stylesheet Link -->
