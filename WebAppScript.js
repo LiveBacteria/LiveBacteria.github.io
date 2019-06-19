@@ -1,13 +1,48 @@
 //'use strict';
-let currVersion = "v0.21.0r",
-devMode=false,
-exit=false,
-dvirLogArray = [];
+let currVersion = "v0.30.0a",
+    devMode=false,
+    exit=false,
+    dvirLogArray = [];
+
+let employeeArray = [
+  {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
+  {name: "Foster, Vincent",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date="},
+  {name: "Jeronimo, Jesus",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date="},
+  {name: "Moore, Jason",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date="},
+  {name: "Shelton, Kenneth,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date="},
+  {name: "Sing, Anil,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308557080&Date="},
+  {name: "Wilson, David,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date="},
+  {name: "Corpuz, Zalhdee,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date="},
+  {name: "Greer, Peter,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551662&Date="},
+  {name: "Hatt, Burton,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552158&Date="},
+  {name: "Huff, Daryl,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date="},
+  {name: "Jacobs, Frederick,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553110&Date="},
+  {name: "Johnston, Michael,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553138&Date="},
+  {name: "Jordon, Timothy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556852&Date="},
+  {name: "Longmore, Jessy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551288&Date="},
+  {name: "Marc, James",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1346713884&Date="},
+  {name: "Medina, Juan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date="},
+  {name: "Naples, Tina,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date="},
+  {name: "Sanchez, Roberto,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="},
+  {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="},
+  {name: "Allen, Rashaan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="},
+  {name: "Felder, James,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="},
+  {name: "Hippe, Bruce,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556872&Date="},
+  {name: "Mcguiness, Jordan",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="},
+  {name: "Muhatia, Nixon,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="},
+  {name: "Pereira, Errol",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date="},
+  {name: "Petrucci, Robert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date="},
+  {name: "Raymundo, Victor,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556288&Date="},
+  {name: "Romero, Gerrardo,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date="},
+  {name: "Santiago, Rosales,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date="},
+  {name: "Soares, Albert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="},
+  {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="}
+];
 
 
 
 let URL_GEN = UrlGenerator('WIP_VERSION'),
-  URL = URL_GEN.next().value;
+    URL = URL_GEN.next().value;
 
 
 /* URL Generator and Date Calculator and Setter */
@@ -24,24 +59,40 @@ function* UrlGenerator(url,dt=new Date()) {
 //2
 function grabOpenPDF(maxNumberDays) {
 
-  //Set the variable for max days.
-  for (let x = 0; x < maxNumberDays; x++) {
-  	if (devMode) {console.log("It works: " + x, URL);}
-    URL = URL_GEN.next().value;
-    openNewBackgroundTab(URL);
-  }
-/**/
+  //Check if devMode is true and that employeeArray exists
+  if(devMode == true && employeeArray){
+
+    //While j is less than the current number of employees in the array, IE: employeeArray.length
+    for(let j = 0; j < 32; j++){
+
+      // This setTimeout anonymous function is here because a piece of this program runs asynchronously
+      setTimeout(() => {
+        $("#employeeID").value = employeeArray[j].url;
+        for (let y = 0; y < maxNumberDays; x++){
+          URL = URL_GEN.next().value;
+          openNewBackgroundTab(URL);
+        }
+      }, j + 500);
+    }
+  }else{
+    alert("Entered else on grabOpenPDF");
+    for (let x = 0; x < maxNumberDays; x++) {
+      if (devMode) {console.log("It works: " + x, URL);}
+      URL = URL_GEN.next().value;
+      openNewBackgroundTab(URL);
+    }}
+  /**/
 }
 
 //OpenLoadNew 12 18 2018 Test
 function openNewBackgroundTab(url){
-    var a = document.createElement("a");
-    a.href = url;
-    var evt = document.createEvent("MouseEvents");
-    //the tenth parameter of initMouseEvent sets ctrl key
-    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0,
-                                true, false, false, false, 0, null);
-    a.dispatchEvent(evt);
+  var a = document.createElement("a");
+  a.href = url;
+  var evt = document.createEvent("MouseEvents");
+  //the tenth parameter of initMouseEvent sets ctrl key
+  evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0,
+      true, false, false, false, 0, null);
+  a.dispatchEvent(evt);
 }
 
 //DVIR Functionatlity BEGIN
@@ -63,12 +114,12 @@ function setToArray(str){
 function callMe(arr){
   if(exit){return;}
   let arrLength = arr.length;
-  
+
   if(confirm("Large Load Detected: "+arrLength+"\nDo you want to continue?")){
-  workingForLoop(arrLength, arr);
-    }else{
-      return;
-    }
+    workingForLoop(arrLength, arr);
+  }else{
+    return;
+  }
 }
 
 function workingForLoop(count, arr){
@@ -76,8 +127,8 @@ function workingForLoop(count, arr){
     //console.log("Looped: " + z);
     console.log("Array Index: " + arr[z]);
     window.open(
-      "http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z],
-      "_blank");
+        "http://winweb.cleanharbors.com/Vehicle/UnifiedDVIREntry.aspx?InspectionLogID=" + arr[z],
+        "_blank");
   }
 }
 //DVIR Functionality END
@@ -97,71 +148,71 @@ window.onload = () => {
       }
     });
     $("#startAppDVIR").on("click", () => {
-  callMe(setToArray($("#dvirLogInputs").val()));
-});
+      callMe(setToArray($("#dvirLogInputs").val()));
+    });
   }
 
   if(document.querySelector("#loginButtonVerizon")){
-		document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
-		window.open("https://login-cleanharbors.platform.telogis.com/");
-	  });
+    document.querySelector("#loginButtonVerizon").addEventListener("click", () => {
+      window.open("https://login-cleanharbors.platform.telogis.com/");
+    });
   }
-	if(document.querySelector("#startPDFApp")){
-  document.querySelector("#startPDFApp").addEventListener("click", () => {
-    start(0);
-  });
-	}
-	if(document.querySelector("#startPDFApp1")){
-	document.querySelector("#startPDFApp1").addEventListener("click", () => {
-    start(1);
-  });
-	}
-	if(document.getElementById("startPDFApp1")){
-		document.addEventListener("keyup", function(event) {
-		event.preventDefault();
-	if (event.keyCode === 13) {
-	  document.getElementById("startPDFApp1").click();
-  	}
-});
-	}
-	let html = ('<div class="sidenav"><a href="/index">Home</a><a href="/DVIR_App">Dvir+</a><a href="/DLOG_App">Dlog+</a></div>');
-  	//document.body.append(newDiv);
-    //let sidenav = "sidenav";
-    let newElement = document.createElement("DIV");
-    let body = document.body;
-    //newElement.setAttribute('class', sidenav);
-    newElement.innerHTML = html;
-    body.appendChild(newElement);
+  if(document.querySelector("#startPDFApp")){
+    document.querySelector("#startPDFApp").addEventListener("click", () => {
+      start(0);
+    });
+  }
+  if(document.querySelector("#startPDFApp1")){
+    document.querySelector("#startPDFApp1").addEventListener("click", () => {
+      start(1);
+    });
+  }
+  if(document.getElementById("startPDFApp1")){
+    document.addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("startPDFApp1").click();
+      }
+    });
+  }
+  let html = ('<div class="sidenav"><a href="/index">Home</a><a href="/DVIR_App">Dvir+</a><a href="/DLOG_App">Dlog+</a></div>');
+  //document.body.append(newDiv);
+  //let sidenav = "sidenav";
+  let newElement = document.createElement("DIV");
+  let body = document.body;
+  //newElement.setAttribute('class', sidenav);
+  newElement.innerHTML = html;
+  body.appendChild(newElement);
 
   /* Sets the max and min values for dates */
-	if(document.querySelector("#date-input")){
-		let dt=new Date(),
-    dateInput = document.querySelector("#date-input");
-		var y = dt.getFullYear();
-  dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-  
-if(devMode){console.log(dateInput.min);}
-  dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-  dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
-}else{
-	let dt=new Date();
-	var y = dt.getFullYear();
+  if(document.querySelector("#date-input")){
+    let dt=new Date(),
+        dateInput = document.querySelector("#date-input");
+    var y = dt.getFullYear();
+    dateInput.max= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
+
+    if(devMode){console.log(dateInput.min);}
+    dateInput.min= (dt.getFullYear()-1) + "-" +  (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+    dateInput.value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+  }else{
+    let dt=new Date();
+    var y = dt.getFullYear();
     document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
   }
 };
 
 function devModeToggle () {
   if(devMode === false && prompt("Attempting to Activate Developer Mode: \nEnter credentials: ") === "admin64"){
-		  devMode = true;
-      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
-	    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
-      unlockWIPMethods(devMode);
-    }else{
-      devMode = false;
-      document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
-			alert("Developer Mode Deactivated:\nLimited Version Active!");
-		}
+    devMode = true;
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion);
+    alert("This is a WIP Build, please take caution.\nAppVersion: " + currVersion + "\nDeveloper Mode Activated");
+    unlockWIPMethods(devMode);
+  }else{
+    devMode = false;
+    document.querySelector(".footNotation").innerHTML = ("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + y + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + "lv");
+    alert("Developer Mode Deactivated:\nLimited Version Active!");
+  }
 }
 
 function unlockWIPMethods(con){
@@ -175,61 +226,61 @@ function unlockWIPMethods(con){
   }
 }
 
-//Starts the task. 
+//Starts the task.
 //1
 function start(load) {
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
-  
-  // overwrite global
-  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value;
-  
-  if(devMode){console.log("Current Address: " + URL);}
-  if (load === 1) {
-    if(devMode){console.log("Event load active. ");}
-    let maxDay = document.querySelector('#maxNumberDays').value;
-    grabOpenPDF(maxDay);
-  } else {
-    //console.log("Event load skip. ")
-    //let maxDay = document.getElementById('maxNumberDays').value;
-    alert("Feature not yet added!");
-    //printTrigger(iFramePdf);
-  }
+
+      // overwrite global
+      URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+      URL = URL_GEN.next().value;
+
+      if(devMode){console.log("Current Address: " + URL);}
+      if (load === 1) {
+        if(devMode){console.log("Event load active. ");}
+        let maxDay = document.querySelector('#maxNumberDays').value;
+        grabOpenPDF(maxDay);
+      } else {
+        //console.log("Event load skip. ")
+        //let maxDay = document.getElementById('maxNumberDays').value;
+        alert("Feature not yet added!");
+        //printTrigger(iFramePdf);
+      }
     }else{
       alert("Action Cancelled! ");
     }
   }else{
-  let startDate = new Date(document.querySelector('#date-input').value);
-  
-  // overwrite global
-  URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-  URL = URL_GEN.next().value;
-  
-  if(devMode){console.log("Current Address: " + URL);}
-  if (load === 1) {
-    if(devMode){console.log("Event load active. ");}
-    let maxDay = document.querySelector('#maxNumberDays').value;
-    grabOpenPDF(maxDay);
-  } else {
-    //console.log("Event load skip. ")
-    //let maxDay = document.getElementById('maxNumberDays').value;
-    if(devMode === true){
-      printTrigger(iFramePdf);
-    }else{
-      alert("Feature not yet added!");
-    }
+    let startDate = new Date(document.querySelector('#date-input').value);
+
+    // overwrite global
+    URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+    URL = URL_GEN.next().value;
+
+    if(devMode){console.log("Current Address: " + URL);}
+    if (load === 1) {
+      if(devMode){console.log("Event load active. ");}
+      let maxDay = document.querySelector('#maxNumberDays').value;
+      grabOpenPDF(maxDay);
+    } else {
+      //console.log("Event load skip. ")
+      //let maxDay = document.getElementById('maxNumberDays').value;
+      if(devMode === true){
+        printTrigger(iFramePdf);
+      }else{
+        alert("Feature not yet added!");
+      }
     }
   }
 }
 
 function printTrigger(elementId) {
-    var getMyFrame = document.getElementById(elementId);
-    //getMyFrame.focus();
-    //getMyFrame.contentWindow.print();
+  var getMyFrame = document.getElementById(elementId);
+  //getMyFrame.focus();
+  //getMyFrame.contentWindow.print();
 
-    $("#iFramePdf").ready(function() {
+  $("#iFramePdf").ready(function() {
     var body = $("#iFramePdf").contents().find("body");
     body.append('Test');
   });
