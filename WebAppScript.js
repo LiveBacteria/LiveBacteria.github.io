@@ -68,7 +68,7 @@ function grabOpenPDF(maxNumberDays) {
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
         $("#employeeID").value = employeeArray[j].url;
-        for (let y = 0; y < maxNumberDays; x++){
+        for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
