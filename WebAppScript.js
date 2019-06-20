@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.6b",
+let currVersion = "v0.31.6d",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -68,8 +68,12 @@ function dateFormatter (date){
 function grabOpenPDF(maxNumberDays, date) {
   //Setting constant start date so that it cannot be altered
   const ourDate = date;
+
+  //returning undefined
   alert("grabOpenPdf alert: " + ourDate);
+
   //let newDate = document.querySelector*("#date-input").value;
+
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
 
@@ -77,7 +81,6 @@ function grabOpenPDF(maxNumberDays, date) {
     for(let j = 0; j < 1; j++){
 
       //Resets the date back to the specified start date for each iteration
-
       document.querySelector("#date-input").value = dateFormatter(ourDate);
       console.log("grabOpenPdf 0: " + dateFormatter(ourDate));
       console.log("grabOpenPdf 1: " + ourDate);
