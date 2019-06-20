@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.6d",
+let currVersion = "v0.31.6e",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -70,7 +70,8 @@ function grabOpenPDF(maxNumberDays, date) {
   const ourDate = date;
 
   //returning undefined
-  alert("grabOpenPdf alert: " + ourDate);
+  alert("grabOpenPdf alert 0: " + ourDate);
+  alert("grabOpenPdf alert 1: " + date);
 
   //let newDate = document.querySelector*("#date-input").value;
 
