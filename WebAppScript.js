@@ -1,8 +1,9 @@
 //'use strict';
-let currVersion = "v0.30.0a",
+let currVersion = "v0.31.0a",
     devMode=false,
     exit=false,
-    dvirLogArray = [];
+    dvirLogArray = [],
+    startDate;
 
 let employeeArray = [
   {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
@@ -62,7 +63,7 @@ function dateFormatter (date){
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays, startDate = new Date()) {
+function grabOpenPDF(maxNumberDays) {
   //let newDate = document.querySelector*("#date-input").value;
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
@@ -82,7 +83,7 @@ function grabOpenPDF(maxNumberDays, startDate = new Date()) {
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
-      }, j * 500);
+      }, j * 250);
     }
   }else{
     alert("Entered else on grabOpenPDF");
@@ -239,9 +240,9 @@ function unlockWIPMethods(con){
 //Starts the task.
 //1
 function start(load) {
+  startDate = new Date(document.querySelector('#date-input').value);
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
-      let startDate = new Date(document.querySelector('#date-input').value);
 
       // overwrite global
       URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
@@ -262,7 +263,6 @@ function start(load) {
       alert("Action Cancelled! ");
     }
   }else{
-    let startDate = new Date(document.querySelector('#date-input').value);
 
     // overwrite global
     URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
@@ -272,7 +272,7 @@ function start(load) {
     if (load === 1) {
       if(devMode){console.log("Event load active. ");}
       let maxDay = document.querySelector('#maxNumberDays').value;
-      grabOpenPDF(maxDay, startDate);
+      grabOpenPDF(maxDay);
     } else {
       //console.log("Event load skip. ");
       //let maxDay = document.getElementById('maxNumberDays').value;
