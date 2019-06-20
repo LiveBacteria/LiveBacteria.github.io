@@ -80,7 +80,6 @@ function grabOpenPDF(maxNumberDays) {
         URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
-          if (devMode) {console.log("It works: " + x, URL);}
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
@@ -242,6 +241,7 @@ function unlockWIPMethods(con){
 //1
 function start(load) {
   startDate = new Date(document.querySelector('#date-input').value);
+  startDate.setDate(startDate.getDate()+1);
   alert(startDate);
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
