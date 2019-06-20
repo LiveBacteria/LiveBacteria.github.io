@@ -51,7 +51,7 @@ function* UrlGenerator(url,dt=new Date()) {
   while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
-    document.querySelector("#date-input").value= dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+    document.querySelector("#date-input").value = dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
 }
 
@@ -80,6 +80,7 @@ function grabOpenPDF(maxNumberDays) {
         URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
+          if (devMode) {console.log("It works: " + x, URL);}
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
@@ -241,6 +242,7 @@ function unlockWIPMethods(con){
 //1
 function start(load) {
   startDate = new Date(document.querySelector('#date-input').value);
+  alert(startDate);
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
 
