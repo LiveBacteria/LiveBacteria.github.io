@@ -1,9 +1,10 @@
 //'use strict';
-let currVersion = "v0.31.0a",
+let currVersion = "v0.31.5a",
     devMode=false,
     exit=false,
     dvirLogArray = [],
-    startDate;
+    startDate;//,
+    //confirmStartDate;
 
 let employeeArray = [
   {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
@@ -63,7 +64,10 @@ function dateFormatter (date){
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays) {
+function grabOpenPDF(maxNumberDays, date) {
+  //Setting constant start date so that it cannot be altered
+  const ourDate = date;
+
   //let newDate = document.querySelector*("#date-input").value;
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
@@ -72,12 +76,14 @@ function grabOpenPDF(maxNumberDays) {
     for(let j = 0; j < 1; j++){
 
       //Resets the date back to the specified start date for each iteration
-      document.querySelector("#date-input").value = dateFormatter(startDate);
-      console.log(startDate);
+
+      document.querySelector("#date-input").value = dateFormatter(ourDate);
+      console.log(dateFormatter(ourDate));
+      console.log(ourDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
-        URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
+        URL_GEN = UrlGenerator(employeeArray[j].url, ourDate);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
@@ -241,6 +247,7 @@ function unlockWIPMethods(con){
 //1
 function start(load) {
   startDate = new Date(document.querySelector('#date-input').value);
+  const confirmStartDate = startDate;
   startDate.setDate(startDate.getDate()+1);
   alert(startDate);
   if(document.querySelector("#maxNumberDays").value > 31){
