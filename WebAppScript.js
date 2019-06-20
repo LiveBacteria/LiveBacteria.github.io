@@ -241,7 +241,6 @@ function start(load) {
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
       let startDate = new Date(document.querySelector('#date-input').value);
-      alert(startDate);
 
       // overwrite global
       URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
@@ -263,7 +262,8 @@ function start(load) {
     }
   }else{
     let startDate = new Date(document.querySelector('#date-input').value);
-
+    alert(startDate);
+    
     // overwrite global
     URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
     URL = URL_GEN.next().value;
