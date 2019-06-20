@@ -57,22 +57,25 @@ function* UrlGenerator(url,dt=new Date()) {
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays) {
-
+function grabOpenPDF(maxNumberDays, startDate) {
+  //let newDate = document.querySelector*("#date-input").value;
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
 
     //While j is less than the current number of employees in the array, IE: employeeArray.length
-    for(let j = 0; j < 32; j++){
+    for(let j = 0; j < 30; j++){
+
+      //Resets the date back to the specified start date for each iteration
+      document.querySelector("#date-input").value = startDate;
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
-        $("#employeeID").value = employeeArray[j].url;
+        document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
-      }, j + 500);
+      }, j * 1000);
     }
   }else{
     alert("Entered else on grabOpenPDF");
@@ -241,7 +244,7 @@ function start(load) {
       if (load === 1) {
         if(devMode){console.log("Event load active. ");}
         let maxDay = document.querySelector('#maxNumberDays').value;
-        grabOpenPDF(maxDay);
+        grabOpenPDF(maxDay, startDate);
       } else {
         //console.log("Event load skip. ")
         //let maxDay = document.getElementById('maxNumberDays').value;
