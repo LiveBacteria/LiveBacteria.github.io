@@ -54,8 +54,9 @@ function* UrlGenerator(url,dt=new Date()) {
   }
 }
 
+//This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
-  return ("" + date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+  return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + (''+date.getDate()).padStart(2,'0');
 }
 
 
