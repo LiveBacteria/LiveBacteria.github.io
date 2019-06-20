@@ -54,6 +54,10 @@ function* UrlGenerator(url,dt=new Date()) {
   }
 }
 
+function dateFormatter (date){
+  return ("" + date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+}
+
 
 // will open x number of new windows containing URL
 //2
@@ -67,7 +71,7 @@ function grabOpenPDF(maxNumberDays, startDate) {
       URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
 
       //Resets the date back to the specified start date for each iteration
-      document.querySelector("#date-input").value = startDate;
+      document.querySelector("#date-input").value = dateFormatter(startDate);
       console.log(startDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
