@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.6e",
+let currVersion = "v0.31.6f",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -65,13 +65,15 @@ function dateFormatter (date){
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays, date) {
+function grabOpenPDF(maxNumberDays, date, newDate) {
+
   //Setting constant start date so that it cannot be altered
   const ourDate = date;
 
   //returning undefined
   alert("grabOpenPdf alert 0: " + ourDate);
   alert("grabOpenPdf alert 1: " + date);
+  alert("grabOpenPdf alert 2: " + newDate);
 
   //let newDate = document.querySelector*("#date-input").value;
 
@@ -255,6 +257,8 @@ function start(load) {
   const confirmStartDate = startDate;
   startDate.setDate(startDate.getDate()+1);
   alert("start 0:" + startDate);
+  alert("start 1:" + confirmStartDatetartDate);
+
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
 
@@ -266,7 +270,7 @@ function start(load) {
       if (load === 1) {
         if(devMode){console.log("Event load active. ");}
         let maxDay = document.querySelector('#maxNumberDays').value;
-        grabOpenPDF(maxDay, startDate);
+        grabOpenPDF(maxDay, startDate, confirmStartDate);
       } else {
         //console.log("Event load skip. ")
         //let maxDay = document.getElementById('maxNumberDays').value;
