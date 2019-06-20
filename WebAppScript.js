@@ -61,7 +61,7 @@ function dateFormatter (date){
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays, startDate) {
+function grabOpenPDF(maxNumberDays, startDate = new Date()) {
   //let newDate = document.querySelector*("#date-input").value;
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
@@ -262,8 +262,7 @@ function start(load) {
     }
   }else{
     let startDate = new Date(document.querySelector('#date-input').value);
-    alert(startDate);
-    
+
     // overwrite global
     URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
     URL = URL_GEN.next().value;
@@ -272,9 +271,9 @@ function start(load) {
     if (load === 1) {
       if(devMode){console.log("Event load active. ");}
       let maxDay = document.querySelector('#maxNumberDays').value;
-      grabOpenPDF(maxDay);
+      grabOpenPDF(maxDay, startDate);
     } else {
-      //console.log("Event load skip. ")
+      //console.log("Event load skip. ");
       //let maxDay = document.getElementById('maxNumberDays').value;
       if(devMode === true){
         printTrigger(iFramePdf);
