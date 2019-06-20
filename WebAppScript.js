@@ -58,6 +58,7 @@ function* UrlGenerator(url,dt=new Date()) {
 
 //This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
+  alert("dateFormatter 0: " + date);
   return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + (''+date.getDate()).padStart(2,'0');
 }
 
@@ -78,8 +79,8 @@ function grabOpenPDF(maxNumberDays, date) {
       //Resets the date back to the specified start date for each iteration
 
       document.querySelector("#date-input").value = dateFormatter(ourDate);
-      console.log(dateFormatter(ourDate));
-      console.log(ourDate);
+      console.log("grabOpenPdf 0: " + dateFormatter(ourDate));
+      console.log("grabOpenPdf 1: " + ourDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
@@ -249,7 +250,7 @@ function start(load) {
   startDate = new Date(document.querySelector('#date-input').value);
   const confirmStartDate = startDate;
   startDate.setDate(startDate.getDate()+1);
-  alert(startDate);
+  alert("start 0:" + startDate);
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
 
