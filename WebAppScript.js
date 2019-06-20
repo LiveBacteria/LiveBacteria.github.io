@@ -67,11 +67,11 @@ function grabOpenPDF(maxNumberDays, startDate = new Date()) {
   if(devMode == true && employeeArray){
 
     //While j is less than the current number of employees in the array, IE: employeeArray.length
-    for(let j = 0; j < 2; j++){
+    for(let j = 0; j < 1; j++){
 
       //Resets the date back to the specified start date for each iteration
       document.querySelector("#date-input").value = dateFormatter(startDate);
-      console.log(startDate.getDate());
+      console.log(startDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
