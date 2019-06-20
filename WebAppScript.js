@@ -68,14 +68,14 @@ function grabOpenPDF(maxNumberDays, startDate) {
 
     //While j is less than the current number of employees in the array, IE: employeeArray.length
     for(let j = 0; j < 2; j++){
-      URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
 
       //Resets the date back to the specified start date for each iteration
       document.querySelector("#date-input").value = dateFormatter(startDate);
-      console.log(startDate);
+      console.log(startDate.getDate());
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
+        URL_GEN = UrlGenerator(employeeArray[j].url, startDate);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
