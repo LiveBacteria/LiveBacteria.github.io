@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.32.0c(A) Reversion Possible | Working Build on One Day Only",
+let currVersion = "v0.32.0d | Working Build on One Day Only",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -55,7 +55,7 @@ function* UrlGenerator(url,dt=new Date()) {
   while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     //dt.setDate(dt.getDate()+1); // increase a day
-    dt.setDate(dt.getDate()); // keep the same date
+    //dt.setDate(dt.getDate()); // keep the same date
     //document.querySelector("#date-input").value = dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
 }
@@ -64,7 +64,7 @@ function* UrlGenerator(url,dt=new Date()) {
 function dateFormatter (date){
   //alert("dateFormatter 0:" + date);
   //alert("dateFormatter 0: " + dateArray[0]);
-  return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()+1).padStart(2,'0');
+  return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()).padStart(2,'0');
 }
 
 
