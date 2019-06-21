@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.32.0c | Working Build on One Day Only",
+let currVersion = "v0.32.0c(A) Reversion Possible | Working Build on One Day Only",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -64,7 +64,7 @@ function* UrlGenerator(url,dt=new Date()) {
 function dateFormatter (date){
   //alert("dateFormatter 0:" + date);
   //alert("dateFormatter 0: " + dateArray[0]);
-  return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()).padStart(2,'0');
+  return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()+1).padStart(2,'0');
 }
 
 
