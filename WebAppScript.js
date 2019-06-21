@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.7c",
+let currVersion = "v0.31.7d",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -69,10 +69,10 @@ function dateFormatter (date){
 // will open x number of new windows containing URL
 //2
 function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
-  alert(dateA);
-  alert(dateArray[0]);
+  //alert(dateA);
+  //alert(dateArray[0]);
   //Setting constant start date so that it cannot be altered
-  const ourDate = date;
+  //const ourDate = date;
 
   //returning undefined
   /*
@@ -91,13 +91,13 @@ function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
     for(let j = 0; j < 1; j++){
 
       //Resets the date back to the specified start date for each iteration
-      document.querySelector("#date-input").value = dateFormatter(ourDate);
-      console.log("grabOpenPdf 0: " + dateFormatter(ourDate));
-      console.log("grabOpenPdf 1: " + ourDate);
+      document.querySelector("#date-input").value = dateFormatter(dateArray[0]);
+      //console.log("grabOpenPdf 0: " + dateFormatter(ourDate));
+      //console.log("grabOpenPdf 1: " + ourDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
-        URL_GEN = UrlGenerator(employeeArray[j].url, ourDate);
+        URL_GEN = UrlGenerator(employeeArray[j].url, dateArray[0]);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
