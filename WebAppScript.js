@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.7b",
+let currVersion = "v0.31.7c",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -62,7 +62,7 @@ function* UrlGenerator(url,dt=new Date()) {
 //This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
   //alert("dateFormatter 0: " + dateArray[0]);
-  return dateArray.getFullYear() + "-" + (''+(dateArray.getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray.getDate()).padStart(2,'0');
+  return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()).padStart(2,'0');
 }
 
 
@@ -70,6 +70,7 @@ function dateFormatter (date){
 //2
 function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
   alert(dateA);
+  alert(dateArray[0]);
   //Setting constant start date so that it cannot be altered
   const ourDate = date;
 
