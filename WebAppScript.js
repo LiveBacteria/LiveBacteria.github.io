@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.8a",
+let currVersion = "v0.31.9a",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -55,12 +55,13 @@ function* UrlGenerator(url,dt=new Date()) {
   while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
     dt.setDate(dt.getDate()+1); // increase a day
-    document.querySelector("#date-input").value = dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
+    //document.querySelector("#date-input").value = dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
 }
 
 //This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
+  alert("dateFormatter 0:" + date);
   //alert("dateFormatter 0: " + dateArray[0]);
   return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()).padStart(2,'0');
 }
@@ -88,22 +89,24 @@ function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
   if(devMode == true && employeeArray){
 
     //While j is less than the current number of employees in the array, IE: employeeArray.length
-    for(let j = 0; j < 2; j++){
+    for(let j = 0; j < 3; j++){
+      if(j > 0){dateArray[j] = dateArray[0];}
 
       //Resets the date back to the specified start date for each iteration
-      document.querySelector("#date-input").value = dateFormatter(dateArray[0]);
+      document.querySelector("#date-input").value = dateFormatter(dateArray[j]);
       //console.log("grabOpenPdf 0: " + dateFormatter(ourDate));
       //console.log("grabOpenPdf 1: " + ourDate);
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
-        URL_GEN = UrlGenerator(employeeArray[j].url, dateArray[0]);
+        URL_GEN = UrlGenerator(employeeArray[j].url, dateArray[j]);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
       }, j * 250);
+
     }
   }else{
     alert("Entered else on grabOpenPDF");
