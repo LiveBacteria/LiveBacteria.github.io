@@ -1,4 +1,4 @@
-let currVersion = "1.0.1a | Initial Rewrite",
+let currVersion = "1.0.3a | Initial Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -89,8 +89,8 @@ function combineInfo(maxNumberDays){
               //for loop executes up to the amount of maxNumberDays
               for(let y = 0; y < maxNumberDays; y++){
                   URL = URL_GEN.next().value;
-                  //openNewBackGroundTab(URL); !!!
-                  console.log(URL);
+                  openNewBackGroundTab(URL); !!!
+                  //console.log(URL);
               }
           }
       },150);
@@ -139,12 +139,14 @@ function start(load){
 
     if($("#maxNumberDays").val() > 31){
         if(confirm("Amount of days entered is high!\nContinue?")){
+
             // overwrite global
             URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
             URL = URL_GEN.next().value;
 
             if(load == 1){
                 let maxDay = $("#maxNumberDays").val();
+                combineInfo(maxDay);
             }else{
                 alert("Function not yet added! ");
             }
