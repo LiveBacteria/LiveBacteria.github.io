@@ -6,6 +6,7 @@ let currVersion = "v0.31.7a",
     startDate;//,
     //confirmStartDate;
 
+//Added array to hold date object due to passing it as an object it becomes undefined
 let dateArray  = [];
 
 let employeeArray = [
@@ -60,25 +61,27 @@ function* UrlGenerator(url,dt=new Date()) {
 
 //This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
-  alert("dateFormatter 0: " + date);
-  return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + (''+date.getDate()).padStart(2,'0');
+  //alert("dateFormatter 0: " + dateArray[0]);
+  return dateArray.getFullYear() + "-" + (''+(dateArray.getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray.getDate()).padStart(2,'0');
 }
 
 
 // will open x number of new windows containing URL
 //2
-function grabOpenPDF(maxNumberDays, date, newDate) {
-
+function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
+  alert(dateA);
   //Setting constant start date so that it cannot be altered
   const ourDate = date;
 
   //returning undefined
+  /*
   alert("grabOpenPdf alert 0: " + ourDate);
   alert("grabOpenPdf alert 1: " + date);
   alert("grabOpenPdf alert 2: " + newDate);
   alert("grabOpenPdf alert 3: " + dateArray[0]);
-
   //let newDate = document.querySelector*("#date-input").value;
+
+   */
 
   //Check if devMode is true and that employeeArray exists
   if(devMode == true && employeeArray){
@@ -256,12 +259,14 @@ function unlockWIPMethods(con){
 //Starts the task.
 //1
 function start(load) {
+
   startDate = new Date(document.querySelector('#date-input').value);
   const confirmStartDate = startDate;
   dateArray.push(confirmStartDate);
-  startDate.setDate(startDate.getDate()+1);
-  alert("start 0:" + startDate);
-  alert("start 1:" + confirmStartDate);
+  //startDate.setDate(startDate.getDate()+1);
+
+  //alert("start 0:" + startDate);
+  //alert("start 1:" + confirmStartDate);
 
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
@@ -274,7 +279,7 @@ function start(load) {
       if (load === 1) {
         if(devMode){console.log("Event load active. ");}
         let maxDay = document.querySelector('#maxNumberDays').value;
-        grabOpenPDF(maxDay, startDate, confirmStartDate);
+        grabOpenPDF(maxDay, startDate, confirmStartDate, dateArray[0]);
       } else {
         //console.log("Event load skip. ")
         //let maxDay = document.getElementById('maxNumberDays').value;
