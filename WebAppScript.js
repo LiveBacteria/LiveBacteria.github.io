@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.32.0b | Working Build on One Day Only",
+let currVersion = "v0.32.0c | Working Build on One Day Only",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -100,13 +100,13 @@ function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
 
       // This setTimeout anonymous function is here because a piece of this program runs asynchronously
       setTimeout(() => {
-        URL_GEN = UrlGenerator(employeeArray[j].url, dateArray[j]);
+        URL_GEN = UrlGenerator(employeeArray[j].url, dateArray[0]);
         document.querySelector("#employeeID").value = employeeArray[j].url;
         for (let y = 0; y < maxNumberDays; y++){
           URL = URL_GEN.next().value;
           openNewBackgroundTab(URL);
         }
-      }, j * 250);
+      }, j * 125);
 
     }
   }else{
