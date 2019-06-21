@@ -6,38 +6,38 @@ let currVersion = "1.0.3a | Initial Rewrite",
     dvirLogArray = [],
     startDate,
     employeeArray = [
-      {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
-      {name: "Foster, Vincent",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date="},
-      {name: "Jeronimo, Jesus",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date="},
-      {name: "Moore, Jason",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date="},
-      {name: "Shelton, Kenneth,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date="},
-      {name: "Sing, Anil,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308557080&Date="},
-      {name: "Wilson, David,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date="},
-      {name: "Corpuz, Zalhdee,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date="},
-      {name: "Greer, Peter,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551662&Date="},
-      {name: "Hatt, Burton,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552158&Date="},
-      {name: "Huff, Daryl,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date="},
-      {name: "Jacobs, Frederick,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553110&Date="},
-      {name: "Johnston, Michael,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553138&Date="},
-      {name: "Jordon, Timothy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556852&Date="},
-      {name: "Longmore, Jessy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551288&Date="},
-      {name: "Marc, James",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1346713884&Date="},
-      {name: "Medina, Juan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date="},
-      {name: "Naples, Tina,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date="},
-      {name: "Sanchez, Roberto,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="},
-      {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="},
-      {name: "Allen, Rashaan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="},
-      {name: "Felder, James,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="},
-      {name: "Hippe, Bruce,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556872&Date="},
-      {name: "Mcguiness, Jordan",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="},
-      {name: "Muhatia, Nixon,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="},
-      {name: "Pereira, Errol",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date="},
-      {name: "Petrucci, Robert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date="},
-      {name: "Raymundo, Victor,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556288&Date="},
-      {name: "Romero, Gerrardo,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date="},
-      {name: "Santiago, Rosales,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date="},
-      {name: "Soares, Albert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="},
-      {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="}
+        {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
+        {name: "Foster, Vincent",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date="},
+        {name: "Jeronimo, Jesus",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date="},
+        {name: "Moore, Jason",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date="},
+        {name: "Shelton, Kenneth,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date="},
+        {name: "Sing, Anil,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308557080&Date="},
+        {name: "Wilson, David,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date="},
+        {name: "Corpuz, Zalhdee,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1332941582&Date="},
+        {name: "Greer, Peter,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551662&Date="},
+        {name: "Hatt, Burton,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552158&Date="},
+        {name: "Huff, Daryl,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date="},
+        {name: "Jacobs, Frederick,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553110&Date="},
+        {name: "Johnston, Michael,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553138&Date="},
+        {name: "Jordon, Timothy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556852&Date="},
+        {name: "Longmore, Jessy,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551288&Date="},
+        {name: "Marc, James",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1346713884&Date="},
+        {name: "Medina, Juan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date="},
+        {name: "Naples, Tina,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date="},
+        {name: "Sanchez, Roberto,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="},
+        {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="},
+        {name: "Allen, Rashaan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="},
+        {name: "Felder, James,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="},
+        {name: "Hippe, Bruce,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556872&Date="},
+        {name: "Mcguiness, Jordan",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="},
+        {name: "Muhatia, Nixon,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="},
+        {name: "Pereira, Errol",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date="},
+        {name: "Petrucci, Robert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date="},
+        {name: "Raymundo, Victor,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556288&Date="},
+        {name: "Romero, Gerrardo,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date="},
+        {name: "Santiago, Rosales,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date="},
+        {name: "Soares, Albert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="},
+        {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="}
     ];
 
 let URL_GEN = UrlGenerator('Rewritten Versioning'),
@@ -67,39 +67,39 @@ function* UrlGenerator(url, dt = new Date()){
 
 //Formats parameter date object into html date compatible string (YYYY-MM-DD)
 function dateFormatter(date = new Date()){
-  return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + ('' + date.getDate()).padStart(2,'0');
+    return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + ('' + date.getDate()).padStart(2,'0');
 }
 
 //Combines data needed to execute method openNewBackgroundTab and then executes accordingly
 function combineInfo(maxNumberDays){
     const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
 
-  //Checks if devMode is true and that the array employeeArray exists
-  if(devMode == true && employeeArray){
+    //Checks if devMode is true and that the array employeeArray exists
+    if(devMode == true && employeeArray){
 
-      setTimeout(() => {
+        setTimeout(() => {
 
-          //for loop executes for as many entries in the employeeArray array
-          for(let x = 0; x < employeeArray.length; x++){
-              URL_GEN = UrlGenerator(employeeArray[x].url, dateObj); //don't forget about the date object issue at hand
+            //for loop executes for as many entries in the employeeArray array
+            for(let x = 0; x < employeeArray.length; x++){
+                URL_GEN = UrlGenerator(employeeArray[x].url, dateObj); //don't forget about the date object issue at hand
 
-              //For visuals, we are updating the employee url field on the page
-              $("#employeeID").val(employeeArray[x].url);
+                //For visuals, we are updating the employee url field on the page
+                $("#employeeID").val(employeeArray[x].url);
 
-              //for loop executes up to the amount of maxNumberDays
-              for(let y = 0; y < maxNumberDays; y++){
-                  URL = URL_GEN.next().value;
-                  openNewBackGroundTab(URL);
-                  //console.log(URL);
-              }
-          }
-      },150);
-  }else{
-    for(let z = 0; z < maxNumberDays; z++){
-      URL = URL_GEN.next().value;
-      openNewBackgroundTab(URL);
+                //for loop executes up to the amount of maxNumberDays
+                for(let y = 0; y < maxNumberDays; y++){
+                    URL = URL_GEN.next().value;
+                    openNewBackGroundTab(URL);
+                    //console.log(URL);
+                }
+            }
+        },150);
+    }else{
+        for(let z = 0; z < maxNumberDays; z++){
+            URL = URL_GEN.next().value;
+            openNewBackgroundTab(URL);
+        }
     }
-  }
 }
 
 //Simulates a mouse control clicking an html link. Opens a new tab with the passed url parameter
