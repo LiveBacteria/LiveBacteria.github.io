@@ -1,4 +1,4 @@
-let currVersion = "1.0.0a | Initial Rewrite",
+let currVersion = "1.0.1a | Initial Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -46,7 +46,7 @@ let URL_GEN = UrlGenerator('Rewritten Versioning'),
 //Url generator increments the date and formats the url correctly for use in telogis connect
 function* UrlGenerator(url, dt = new Date()){
     //Checks for if daily process is true
-    if(dailyProcess){
+    if($("#listSelector").attr("checked") && devMode){
 
         //Creates new date object from raw date data in the format of YYYY, MM, DD
         const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
@@ -72,7 +72,7 @@ function dateFormatter(date = new Date()){
 
 //Combines data needed to execute method openNewBackgroundTab and then executes accordingly
 function combineInfo(maxNumberDays){
-    let dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
+    const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
 
   //Checks if devMode is true and that the array employeeArray exists
   if(devMode == true && employeeArray){
@@ -81,7 +81,7 @@ function combineInfo(maxNumberDays){
 
           //for loop executes for as many entries in the employeeArray array
           for(let x = 0; x < employeeArray.length; x++){
-              URL_GEN = UrlGenerator(employeeArray[x].url, date); //don't forget about the date object issue at hand
+              URL_GEN = UrlGenerator(employeeArray[x].url, dateObj); //don't forget about the date object issue at hand
 
               //For visuals, we are updating the employee url field on the page
               $("#employeeID").val(employeeArray[x].url);
@@ -119,7 +119,7 @@ function devModeToggle(){
 
         alert("Developer mode activated! Please take caution. ");
         $(".footNotation").html(("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + dateArray[0] + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>DevAppVersion " + currVersion));
-        $("#iFramePdf").attr("style", "display: block");
+        $("#elInput").attr("style", "display: block");
     }else{
         devMode = false;
 
