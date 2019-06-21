@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.6f",
+let currVersion = "v0.31.6g",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -257,7 +257,7 @@ function start(load) {
   const confirmStartDate = startDate;
   startDate.setDate(startDate.getDate()+1);
   alert("start 0:" + startDate);
-  alert("start 1:" + confirmStartDatetartDate);
+  alert("start 1:" + confirmStartDate);
 
   if(document.querySelector("#maxNumberDays").value > 31){
     if(confirm("Amount of days entered is high, continue? ")){
