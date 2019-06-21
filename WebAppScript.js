@@ -6,6 +6,8 @@ let currVersion = "v0.31.6g",
     startDate;//,
     //confirmStartDate;
 
+let dateArray  = [];
+
 let employeeArray = [
   {name: "Flores, Jose",url:"https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="},
   {name: "Foster, Vincent",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date="},
@@ -74,6 +76,7 @@ function grabOpenPDF(maxNumberDays, date, newDate) {
   alert("grabOpenPdf alert 0: " + ourDate);
   alert("grabOpenPdf alert 1: " + date);
   alert("grabOpenPdf alert 2: " + newDate);
+  alert("grabOpenPdf alert 3: " + dateArray[0]);
 
   //let newDate = document.querySelector*("#date-input").value;
 
@@ -255,6 +258,7 @@ function unlockWIPMethods(con){
 function start(load) {
   startDate = new Date(document.querySelector('#date-input').value);
   const confirmStartDate = startDate;
+  dateArray.push(confirmStartDate);
   startDate.setDate(startDate.getDate()+1);
   alert("start 0:" + startDate);
   alert("start 1:" + confirmStartDate);
