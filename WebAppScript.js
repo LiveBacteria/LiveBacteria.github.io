@@ -89,7 +89,7 @@ function combineInfo(maxNumberDays){
               //for loop executes up to the amount of maxNumberDays
               for(let y = 0; y < maxNumberDays; y++){
                   URL = URL_GEN.next().value;
-                  openNewBackGroundTab(URL); !!!
+                  openNewBackGroundTab(URL);
                   //console.log(URL);
               }
           }
