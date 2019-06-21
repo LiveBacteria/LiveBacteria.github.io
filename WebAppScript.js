@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.32.0a | Working Build on One Day Only",
+let currVersion = "v0.32.0b | Working Build on One Day Only",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -62,7 +62,7 @@ function* UrlGenerator(url,dt=new Date()) {
 
 //This function converts a javascript date object into an HTML Date readable format
 function dateFormatter (date){
-  alert("dateFormatter 0:" + date);
+  //alert("dateFormatter 0:" + date);
   //alert("dateFormatter 0: " + dateArray[0]);
   return dateArray[0].getFullYear() + "-" + (''+(dateArray[0].getMonth()+1)).padStart(2,'0') + "-" + (''+dateArray[0].getDate()).padStart(2,'0');
 }
