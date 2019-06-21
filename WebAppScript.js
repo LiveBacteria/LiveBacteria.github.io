@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.9a",
+let currVersion = "v0.31.9b",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -54,7 +54,8 @@ let URL_GEN = UrlGenerator('WIP_VERSION'),
 function* UrlGenerator(url,dt=new Date()) {
   while (true){
     yield url + dt.getFullYear() + (''+(dt.getMonth()+1)).padStart(2,'0') + (''+dt.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
-    dt.setDate(dt.getDate()+1); // increase a day
+    //dt.setDate(dt.getDate()+1); // increase a day
+    dt.setDate(dt.getDate()); // keep the same date
     //document.querySelector("#date-input").value = dt.getFullYear() + "-" + (''+(dt.getMonth()+1)).padStart(2,'0') + "-" + (''+dt.getDate()).padStart(2,'0');
   }
 }
