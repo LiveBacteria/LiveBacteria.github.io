@@ -1,5 +1,5 @@
 //'use strict';
-let currVersion = "v0.31.7d",
+let currVersion = "v0.31.8a",
     devMode=false,
     exit=false,
     dvirLogArray = [],
@@ -88,7 +88,7 @@ function grabOpenPDF(maxNumberDays, date, newDate, dateA) {
   if(devMode == true && employeeArray){
 
     //While j is less than the current number of employees in the array, IE: employeeArray.length
-    for(let j = 0; j < 1; j++){
+    for(let j = 0; j < 2; j++){
 
       //Resets the date back to the specified start date for each iteration
       document.querySelector("#date-input").value = dateFormatter(dateArray[0]);
