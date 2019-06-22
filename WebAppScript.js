@@ -89,8 +89,7 @@ function combineInfo(maxNumberDays){
                 //for loop executes up to the amount of maxNumberDays
                 for(let y = 0; y < maxNumberDays; y++){
                     URL = URL_GEN.next().value;
-                    openNewBackGroundTab(URL);
-                    //console.log(URL);
+                    openBackgroundTab(URL);
                 }
             }
         },150);
@@ -100,6 +99,7 @@ function combineInfo(maxNumberDays){
             openBackgroundTab(URL);
         }
     }
+    if(devMode){console.log("Finished! ");}
 }
 
 //Simulates a mouse control clicking an html link. Opens a new tab with the passed url parameter
