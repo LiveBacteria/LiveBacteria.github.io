@@ -1,4 +1,4 @@
-let currVersion = "1.0.3a | Initial Rewrite",
+let currVersion = "1.1.0r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -97,7 +97,7 @@ function combineInfo(maxNumberDays){
     }else{
         for(let z = 0; z < maxNumberDays; z++){
             URL = URL_GEN.next().value;
-            openNewBackgroundTab(URL);
+            openBackgroundTab(URL);
         }
     }
 }
@@ -108,7 +108,7 @@ function openBackgroundTab (url){
     a.href = url;
 
     let evt = document.createEvent("MouseEvents");
-    evt.initMouseEvent("click", true, true, 0, 0, 0, 0, 0, 0, true, false, false, false, 0, null);
+    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, true, false, false, false, 0, null);
     a.dispatchEvent(evt);
 }
 
