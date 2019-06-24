@@ -1,4 +1,4 @@
-let currVersion = "1.1.0r | Stable Rewrite",
+let currVersion = "1.1.1r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -46,7 +46,7 @@ let URL_GEN = UrlGenerator('Rewritten Versioning'),
 //Url generator increments the date and formats the url correctly for use in telogis connect
 function* UrlGenerator(url, dt = new Date()){
     //Checks for if daily process is true
-    if($("#listSelector").attr("checked") && devMode){
+    if($("#listSelector").attr("checked")){
 
         //Creates new date object from raw date data in the format of YYYY, MM, DD
         const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
