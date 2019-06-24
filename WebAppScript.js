@@ -1,4 +1,4 @@
-let currVersion = "1.1.2r | Stable Rewrite",
+let currVersion = "1.1.3r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -53,7 +53,8 @@ function* UrlGenerator(url, dt = new Date()){
 
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
-            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth()+1)).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+            //date.getMont()+1
+            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth())).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
             dateObj.setDate(dateObj.getDate()+1); // Increases a day
         }
     }else{
@@ -67,7 +68,8 @@ function* UrlGenerator(url, dt = new Date()){
 
 //Formats parameter date object into html date compatible string (YYYY-MM-DD)
 function dateFormatter(date = new Date()){
-    return date.getFullYear() + "-" + (''+(date.getMonth()+1)).padStart(2,'0') + "-" + ('' + date.getDate()).padStart(2,'0');
+    //date.getMont()+1
+    return date.getFullYear() + "-" + (''+(date.getMonth())).padStart(2,'0') + "-" + ('' + date.getDate()).padStart(2,'0');
 }
 
 //Combines data needed to execute method openNewBackgroundTab and then executes accordingly
