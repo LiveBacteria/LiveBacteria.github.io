@@ -1,4 +1,4 @@
-let currVersion = "1.1.1r | Stable Rewrite",
+let currVersion = "1.1.2r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -74,8 +74,8 @@ function dateFormatter(date = new Date()){
 function combineInfo(maxNumberDays){
     const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
 
-    //Checks if devMode is true and that the array employeeArray exists
-    if(devMode == true && employeeArray){
+    //Checks if #listSelector (Daily Process checkbox) is checked and that the array employeeArray exists
+    if(employeeArray && $("#listSelector").attr("checked")){
 
         setTimeout(() => {
 
