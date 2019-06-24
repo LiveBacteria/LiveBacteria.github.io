@@ -1,4 +1,4 @@
-let currVersion = "1.1.3r | Stable Rewrite",
+let currVersion = "1.1.4r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -154,6 +154,9 @@ function start(load){
             }
         }
     }else{
+        //sets startDate to be equal to the date input field
+        startDate = new Date($("#date-input").val());
+
         // overwrite global
         URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
         URL = URL_GEN.next().value;
