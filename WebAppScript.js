@@ -1,4 +1,4 @@
-let currVersion = "1.1.4r | Stable Rewrite",
+let currVersion = "1.2.0r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -25,10 +25,8 @@ let currVersion = "1.1.4r | Stable Rewrite",
         {name: "Medina, Juan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date="},
         {name: "Naples, Tina,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date="},
         {name: "Sanchez, Roberto,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="},
-        {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="},
         {name: "Allen, Rashaan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="},
         {name: "Felder, James,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="},
-        {name: "Hippe, Bruce,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556872&Date="},
         {name: "Mcguiness, Jordan",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="},
         {name: "Muhatia, Nixon,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="},
         {name: "Pereira, Errol",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date="},
@@ -37,8 +35,22 @@ let currVersion = "1.1.4r | Stable Rewrite",
         {name: "Romero, Gerrardo,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date="},
         {name: "Santiago, Rosales,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date="},
         {name: "Soares, Albert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="},
-        {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="}
+        {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="},
+        {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="}
     ];
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBBX3JXe4jMbL4YW2Bwv90zP2s0g5nNsjY",
+    authDomain: "protos-store.firebaseapp.com",
+    databaseURL: "https://protos-store.firebaseio.com",
+    projectId: "protos-store",
+    storageBucket: "protos-store.appspot.com",
+    messagingSenderId: "117649759022",
+    appId: "1:117649759022:web:b6a528005b4dc04d"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 let URL_GEN = UrlGenerator('Rewritten Versioning'),
     URL = URL_GEN.next().value;
