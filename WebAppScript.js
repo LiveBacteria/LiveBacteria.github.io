@@ -1,4 +1,4 @@
-let currVersion = "1.2.0r | Stable Rewrite",
+let currVersion = "1.2.1r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
