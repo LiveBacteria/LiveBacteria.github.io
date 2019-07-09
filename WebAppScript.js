@@ -38,7 +38,7 @@ let currVersion = "1.2.0r | Stable Rewrite",
         {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="},
         {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="}
     ];
-
+/*
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBBX3JXe4jMbL4YW2Bwv90zP2s0g5nNsjY",
@@ -51,6 +51,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+*/
 
 let URL_GEN = UrlGenerator('Rewritten Versioning'),
     URL = URL_GEN.next().value;
