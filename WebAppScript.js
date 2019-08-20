@@ -1,4 +1,4 @@
-let currVersion = "1.2.4r | Stable Rewrite",
+let currVersion = "1.2.5r | Stable Rewrite",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -25,6 +25,7 @@ let currVersion = "1.2.4r | Stable Rewrite",
         {name: "Sanchez, Roberto,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="},
         {name: "Allen, Rashaan,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="},
         {name: "Felder, James,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="},
+        {name: "Jenkins, Tyrone,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559004&Date="},
         {name: "Mcguiness, Jordan",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="},
         {name: "Moore, Jason",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date="},
         {name: "Muhatia, Nixon,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="},
@@ -36,7 +37,6 @@ let currVersion = "1.2.4r | Stable Rewrite",
         {name: "Shelton, Kenneth,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date="},
         {name: "Soares, Albert,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="},
         {name: "Soares, Anthony,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="},
-        {name: "Jenkins, Tyrone,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559004&Date="},
         {name: "Wilson, Joseph,",url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="}
     ];
 /*
