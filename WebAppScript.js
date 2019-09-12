@@ -1,4 +1,4 @@
-let currVersion = "1.2.6r | Stable Rewrite",
+let currVersion = "1.3.0r | Reworked Start Methods",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -149,25 +149,27 @@ function devModeToggle(){
 function start(load){
 
     //Takes date input from html element, splits it by "-" and sets it to an array and then parses all the values to integers
+    let maxNumberDays = $("#maxNumberDays").val();
     dateArray = ($("#date-input").val()).split("-");
     for(let count = 0; count < dateArray.length; count++){
         dateArray[count] = parseInt(dateArray[count]);
     }
 
-    if($("#maxNumberDays").val() > 31){
+    if(maxNumberDays > 31 && $("#listSelector").attr("checked") === false){
         if(confirm("Amount of days entered is high!\nContinue?")){
 
             // overwrite global
             URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
             URL = URL_GEN.next().value;
 
-            if(load == 1){
-                let maxDay = $("#maxNumberDays").val();
-                combineInfo(maxDay);
+            if(load === 1){
+                combineInfo(maxNumberDays);
             }else{
                 alert("Function not yet added! ");
             }
         }
+    }else if(maxNumberDays > 31 && $("#listSelector").attr("checked")){
+        alert(`When 'Daily Process' is checked the maximum amount of days can not be higher than 31.\nAmount entered: ${maxNumberDays}`);
     }else{
         //sets startDate to be equal to the date input field
         startDate = new Date($("#date-input").val());
@@ -175,9 +177,8 @@ function start(load){
         // overwrite global
         URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
         URL = URL_GEN.next().value;
-        if(load == 1){
-            let maxDay = $("#maxNumberDays").val();
-            combineInfo(maxDay);
+        if(load === 1){
+            combineInfo(maxNumberDays);
         }else{
             alert("Function not yet added! ");
         }
