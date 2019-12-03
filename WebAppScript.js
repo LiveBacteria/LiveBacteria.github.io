@@ -1,4 +1,4 @@
-let currVersion = "1.4.3a | Updated Employee List",
+let currVersion = "1.4.4a | Updated Employee List",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -68,13 +68,15 @@ function* UrlGenerator(url, dt = new Date()){
 
         //Creates new date object from raw date data in the format of YYYY, MM, DD
         const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
+
+        //Use this code during december then comment out!
         let month = dateObj.getMonth();
-        let formattedMonth = (""+month).padStart(2,"0") == "00" ? "12" : (""+month).padStart(2,"0");
+        let formattedMonth = (""+(month+1)).padStart(2,"0") == "00" ? "12" : (""+month).padStart(2,"0");
 
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
             //date.getMont()+1
-            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth())).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+            yield url + dateObj.getFullYear() + formattedMonth + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
             dateObj.setDate(dateObj.getDate()+1); // Increases a day
         }
     }else{
