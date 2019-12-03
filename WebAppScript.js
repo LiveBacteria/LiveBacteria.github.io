@@ -1,4 +1,4 @@
-let currVersion = "1.4.4a | Updated Employee List",
+let currVersion = "1.4.5a | Limited Run - December",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -112,7 +112,11 @@ function combineInfo(maxNumberDays){
 
                 //for loop executes up to the amount of maxNumberDays
                 for(let y = 0; y < maxNumberDays; y++){
-                    URL = URL_GEN.next().value;
+                    // UNCOMMENT AFTER DECEMBER!!
+                    //URL = URL_GEN.next().value;
+
+                    const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
+                    URL = url + dateObj.getFullYear() + "12" + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
                     openBackgroundTab(URL);
                 }
             }
