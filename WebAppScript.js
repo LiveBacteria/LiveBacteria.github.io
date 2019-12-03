@@ -1,4 +1,4 @@
-let currVersion = "1.4.2a | Updated Employee List",
+let currVersion = "1.4.3a | Updated Employee List",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -73,7 +73,7 @@ function* UrlGenerator(url, dt = new Date()){
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
             //date.getMont()+1
-            yield `${url}${dateObj.getFullYear()}${(''+(dateObj.getMonth())).padStart(2,'0') == "00" ? "12": (dateObj.getMonth())).padStart(2,'0')}${(''+dateObj.getDate()).padStart(2,'0')}&Violations=true&SensorFailures=false`;
+            yield `${url}${dateObj.getFullYear()}${''+(dateObj.getMonth()).padStart(2,'0') == "00" ? "12" : (''+dateObj.getMonth()).padStart(2,0)}${''+dateObj.getDate()).padStart(2,'0')}&Violations=true&SensorFailures=false`;
             dateObj.setDate(dateObj.getDate()+1); // Increases a day
         }
     }else{
