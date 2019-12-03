@@ -1,4 +1,4 @@
-let currVersion = "1.4.6a | Limited Run - December",
+let currVersion = "1.4.7a | Limited Run - December",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -115,7 +115,7 @@ function combineInfo(maxNumberDays){
                     // UNCOMMENT AFTER DECEMBER!!
                     //URL = URL_GEN.next().value;
 
-                    const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
+                    const dateObj = new Date(dateArray[0]-1, dateArray[1], dateArray[2]);
                     URL = document.querySelector("#employeeID").value + dateObj.getFullYear() + "12" + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
                     openBackgroundTab(URL);
                 }
