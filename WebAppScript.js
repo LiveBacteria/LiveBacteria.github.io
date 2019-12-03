@@ -1,4 +1,4 @@
-let currVersion = "1.4.5a | Limited Run - December",
+let currVersion = "1.4.6a | Limited Run - December",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -116,7 +116,7 @@ function combineInfo(maxNumberDays){
                     //URL = URL_GEN.next().value;
 
                     const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
-                    URL = url + dateObj.getFullYear() + "12" + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+                    URL = document.querySelector("#employeeID").value + dateObj.getFullYear() + "12" + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
                     openBackgroundTab(URL);
                 }
             }
