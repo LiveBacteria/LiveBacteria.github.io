@@ -1,4 +1,4 @@
-let currVersion = "1.3.2r | Updated Employee List",
+let currVersion = "1.4.0a | Updated Employee List",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -72,7 +72,7 @@ function* UrlGenerator(url, dt = new Date()){
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
             //date.getMont()+1
-            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth())).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth()+1)).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
             dateObj.setDate(dateObj.getDate()+1); // Increases a day
         }
     }else{
@@ -157,6 +157,7 @@ function start(load){
     for(let count = 0; count < dateArray.length; count++){
         dateArray[count] = parseInt(dateArray[count]);
     }
+    //if(dateArray[2] == "00"){dateArray[2] = 12;}
 
     if(maxNumberDays > 31 && $("#listSelector").attr("checked") === false){
         if(confirm("Amount of days entered is high!\nContinue?")){
