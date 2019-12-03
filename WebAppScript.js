@@ -68,12 +68,13 @@ function* UrlGenerator(url, dt = new Date()){
 
         //Creates new date object from raw date data in the format of YYYY, MM, DD
         const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
-
+        let month = dateObj.getMonth();
+        let formattedMonth = (""+month).padStart(2,"0") == "00" ? "12" : (""+month).padStart(2,"0");
 
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
             //date.getMont()+1
-            yield `${url}${dateObj.getFullYear()}${''+(dateObj.getMonth()).padStart(2,'0') == "00" ? "12" : (''+dateObj.getMonth()).padStart(2,0)}${(''+dateObj.getDate()).padStart(2,'0'))}&Violations=true&SensorFailures=false`;
+            yield url + dateObj.getFullYear() + (''+(dateObj.getMonth())).padStart(2,'0') + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
             dateObj.setDate(dateObj.getDate()+1); // Increases a day
         }
     }else{
