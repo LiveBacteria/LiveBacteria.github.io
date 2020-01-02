@@ -1,4 +1,4 @@
-let currVersion = "1.5.2a | Revert Code",
+let currVersion = "1.6.0a | Updated Code",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -164,7 +164,6 @@ function* UrlGenerator(url, dt = new Date()) {
         yield url + dt.getFullYear() + ('' + (dt.getMonth() + 1)).padStart(2, '0') + ('' + dt.getDate()).padStart(2, '0') + "&Violations=true&SensorFailures=false";
         dt.setDate(dt.getDate() + 1); // Increases a day
     }
-}
 }
 
 //Formats parameter date object into html date compatible string (YYYY-MM-DD)
