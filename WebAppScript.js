@@ -1,4 +1,4 @@
-let currVersion = "1.4.9a | Limited Run - December",
+let currVersion = "1.5.0a | Revert Code",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -67,14 +67,15 @@ function* UrlGenerator(url, dt = new Date()){
         const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
 
         //Use this code during december then comment out!
-        let month = dateObj.getMonth();
-        let formattedMonth = (""+(month+1)).padStart(2,"0") == "00" ? "12" : (""+month).padStart(2,"0");
+        // let month = dateObj.getMonth();
+        // let formattedMonth = (""+(month+1)).padStart(2,"0") == "00" ? "12" : (""+month).padStart(2,"0");
 
         while(true){
             //padStart forces there to be two digits in the YYYY-MM-DD format
             //date.getMont()+1
-            yield url + dateObj.getFullYear() + formattedMonth + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
-            dateObj.setDate(dateObj.getDate()+1); // Increases a day
+            yield url + dateObj.getFullYear() + (""+month+1).padStart(2,"0") /* formattedMonth */ + (''+dateObj.getDate()).padStart(2,'0') + "&Violations=true&SensorFailures=false";
+            // dateObj.setDate(dateObj.getDate()+1); // Increases a day
+            dateObj = new Date(dateObj.setTime( dateObj.getTime() + 1 * 86400000 ));
         }
     }else{
         while(true){
