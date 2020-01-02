@@ -1,4 +1,4 @@
-let currVersion = "1.6.0a | Updated Code",
+let currVersion = "1.6.1a | Updated Code",
     devMode = false,
     exit = false,
     dateArray = [],
@@ -192,7 +192,7 @@ function combineInfo(maxNumberDays) {
                 //for loop executes up to the amount of maxNumberDays
                 for (let y = 0; y < maxNumberDays; y++) {
                     let formattedDate = targetDate.getFullYear() + ('' + (targetDate.getMonth() + 1)).padStart(2, '0') + ('' + targetDate.getDate()).padStart(2, '0') + "&Violations=true&SensorFailures=false";
-                    URL = `${employeeArray[x].url}+formattedDate`;
+                    URL = `${employeeArray[x].url}+${formattedDate}`;
                     openBackgroundTab(URL);
                     targetDate = new Date(date.setTime(date.getTime() + y * 86400000));
                 }
