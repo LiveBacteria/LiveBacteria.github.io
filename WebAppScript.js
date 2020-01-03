@@ -1,8 +1,6 @@
-let currVersion = "1.6.1a | Updated Code",
+let currVersion = "1.6.5a | Updated Code",
     devMode = false,
     exit = false,
-    dateArray = [],
-    dailyProcess = false,
     dvirLogArray = [],
     startDate,
     employeeArray = [
@@ -168,39 +166,31 @@ function* UrlGenerator(url, dt = new Date()) {
 
 //Formats parameter date object into html date compatible string (YYYY-MM-DD)
 function dateFormatter(date = new Date()) {
-    //date.getMont()+1
     return date.getFullYear() + "-" + ('' + (date.getMonth())).padStart(2, '0') + "-" + ('' + date.getDate()).padStart(2, '0');
 }
 
 //Combines data needed to execute method openNewBackgroundTab and then executes accordingly
 function combineInfo(maxNumberDays) {
-    const dateObj = new Date(dateArray[0], dateArray[1], dateArray[2]);
-    let date = new Date(dateArray[0], dateArray[1], dateArray[2]);
-    //Checks if #listSelector (Daily Process checkbox) is checked and that the array employeeArray exists
-    if (employeeArray && $("#listSelector").attr("checked")) {
+    for (let z = 0; z < maxNumberDays; z++) {
+        URL = URL_GEN.next().value;
 
-        setTimeout(() => {
-
-            //for loop executes for as many entries in the employeeArray array
-            for (let x = 0; x < employeeArray.length; x++) {
-
-                let targetDate = date;
-                //URL_GEN = UrlGenerator(employeeArray[x].url, dateObj); //don't forget about the date object issue at hand
-
-                //For visuals, we are updating the employee url field on the page
-                $("#employeeID").val(employeeArray[x].url);
-                //for loop executes up to the amount of maxNumberDays
-                for (let y = 0; y < maxNumberDays; y++) {
-                    let formattedDate = targetDate.getFullYear() + ('' + (targetDate.getMonth() + 1)).padStart(2, '0') + ('' + targetDate.getDate()).padStart(2, '0') + "&Violations=true&SensorFailures=false";
-                    URL = `${employeeArray[x].url}+${formattedDate}`;
-                    openBackgroundTab(URL);
-                    targetDate = new Date(date.setTime(date.getTime() + y * 86400000));
-                }
-            }
-        }, 150);
-    } else {
-        for (let z = 0; z < maxNumberDays; z++) {
-            URL = URL_GEN.next().value;
+        if ($("#autoPrint").attr("checked") == "checked") {
+            console.log("Entered iFrame methods");
+            setTimeout(() => {
+                // Creates iframe and prints the window
+                let iframeObj = document.createElement('iframe');
+                iframeObj.id = `iframe_${z}`;
+                iframeObj.hidden = true;
+                iframeObj.onload = () => {
+                    setTimeout(() => {
+                        document.querySelector("#iframe_"+z).contentWindow.print();
+                    }, 500);
+                };
+                iframeObj.src = URL;
+                document.body.appendChild(iframeObj);
+            }, z * 500);
+        } else {
+            // Opens tab for manual print
             openBackgroundTab(URL);
         }
     }
@@ -225,13 +215,13 @@ function devModeToggle() {
         devMode = true;
 
         alert("Developer mode activated! Please take caution. ");
-        $(".footNotation").html(("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + dateArray[0] + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>DevAppVersion " + currVersion));
+        $(".footNotation").html(("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + new Date().getFullYear() + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>DevAppVersion " + currVersion));
         $("#elInput").attr("style", "display: block");
     } else {
         devMode = false;
 
         alert("Developer mode deactivated! \nTraces of previous code or elements may still exist.\n For safety, please refresh the page.");
-        $(".footNotation").html(("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + dateArray[0] + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + ". DevMode code may still exist, take caution."));
+        $(".footNotation").html(("All Rights Reserved. Released under the MIT license. Copyright Tyler Poore " + new Date().getFullYear() + ", created for general use Clean Harbors© in-house. Logos and Images used are owned, and or managed by Clean Harbors©.<br>AppVersion " + currVersion + ". DevMode code may still exist, take caution."));
     }
 }
 
@@ -240,11 +230,6 @@ function start(load) {
 
     //Takes date input from html element, splits it by "-" and sets it to an array and then parses all the values to integers
     let maxNumberDays = $("#maxNumberDays").val();
-    dateArray = ($("#date-input").val()).split("-");
-    for (let count = 0; count < dateArray.length; count++) {
-        dateArray[count] = parseInt(dateArray[count]);
-    }
-    //if(dateArray[2] == "00"){dateArray[2] = 12;}
 
     if (maxNumberDays > 31 && $("#listSelector").attr("checked") === false) {
         if (confirm("Amount of days entered is high!\nContinue?")) {
@@ -262,16 +247,33 @@ function start(load) {
     } else if (maxNumberDays > 31 && $("#listSelector").attr("checked")) {
         alert(`When 'Daily Process' is checked the maximum amount of days can not be higher than 31.\nAmount entered: ${maxNumberDays}`);
     } else {
-        //sets startDate to be equal to the date input field
-        startDate = new Date($("#date-input").val());
 
-        // overwrite global
-        URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
-        URL = URL_GEN.next().value;
-        if (load === 1) {
-            combineInfo(maxNumberDays);
+        if ($("#listSelector").attr("checked")) {
+            for (let i = 0; i < employeeArray.length; i++) {
+                //sets startDate to be equal to the date input field
+                startDate = new Date($("#date-input").val());
+
+                // overwrite global
+                URL_GEN = UrlGenerator(employeeArray[i].url, startDate);
+                URL = URL_GEN.next().value;
+                if (load === 1) {
+                    combineInfo(maxNumberDays);
+                } else {
+                    alert("Function not yet added! ");
+                }
+            }
         } else {
-            alert("Function not yet added! ");
+            //sets startDate to be equal to the date input field
+            startDate = new Date($("#date-input").val());
+
+            // overwrite global
+            URL_GEN = UrlGenerator(document.querySelector("#employeeID").value, startDate);
+            URL = URL_GEN.next().value;
+            if (load === 1) {
+                combineInfo(maxNumberDays);
+            } else {
+                alert("Function not yet added! ");
+            }
         }
     }
 }
