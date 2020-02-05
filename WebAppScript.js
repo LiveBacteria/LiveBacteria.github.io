@@ -1,4 +1,4 @@
-let currVersion = "1.6.5a | Updated Code",
+let currVersion = "1.7.0r | Updated Employee List and Code",
     devMode = false,
     exit = false,
     dvirLogArray = [],
@@ -6,135 +6,286 @@ let currVersion = "1.6.5a | Updated Code",
     employeeArray = [
         {
             name: "Flores, Jose",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date="
-        },
-        {
-            name: "Foster, Vincent",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date=",
+            branch: "3M",
+            active: true
         },
         {
             name: "Jeronimo, Jesus",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date=",
+            branch: "4B",
+            active: true
         },
         {
-            name: "Sing, Anil,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308557080&Date="
+            name: "Sing, Anil",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308557080&Date=",
+            branch: "3M",
+            active: true
         },
         {
-            name: "Wilson, David,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date="
+            name: "Wilson, David",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date=",
+            branch: "3M",
+            active: true
         },
         {
-            name: "Greer, Peter,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551662&Date="
+            name: "Foster, Vincent",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558192&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Hatt, Burton,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552158&Date="
+            name: "Greer, Peter",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551662&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Huff, Daryl,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date="
+            name: "Hatt, Burton",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552158&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Johnston, Michael,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553138&Date="
+            name: "Huff, Daryl",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559046&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Jordon, Timothy,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556852&Date="
+            name: "Johnston, Michael",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553138&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Longmore, Jessy,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551288&Date="
+            name: "Jordon, Timothy",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556852&Date=",
+            branch: "6M",
+            active: true
+        },
+        {
+            name: "Longmore, Jessy",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551288&Date=",
+            branch: "6M",
+            active: true
         },
         {
             name: "Marc, James",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1346713884&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1346713884&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Medina, Juan,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date="
+            name: "Medina, Juan",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553172&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Menor Jr., Gene,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1366082712&Date="
+            name: "Menor Jr., Gene",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1366082712&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Mora, Pedro,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1369628138&Date="
+            name: "Mora, Pedro",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1369628138&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Naples, Tina,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date="
+            name: "Naples, Tina",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552826&Date=",
+            branch: "6M",
+            active: true
         },
         {
-            name: "Sanchez, Roberto,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date="
+            name: "Sanchez, Roberto",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1327216822&Date=",
+            branch: "6M",
+            active: false,
+            reason: "LOA"
         },
         {
-            name: "Allen, Rashaan,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date="
+            name: "Allen, Rashaan",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Delosreyes, Jose,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1366360486&Date="
+            name: "Delosreyes, Jose",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1366360486&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Felder, James,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date="
+            name: "Felder, James",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980720&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Jenkins, Tyrone,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559004&Date="
+            name: "Jenkins, Tyrone",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559004&Date=",
+            branch: "KH",
+            active: true
         },
         {
             name: "Mcguiness, Jordan",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1349517206&Date=",
+            branch: "KH",
+            active: true
         },
         {
             name: "Moore, Jason",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352518174&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Muhatia, Nixon,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date="
+            name: "Muhatia, Nixon",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1344934460&Date=",
+            branch: "KH",
+            active: true
         },
         {
             name: "Pereira, Errol",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date="
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1352828404&Date=",
+            branch: "KH",
+            active: false,
+            reason: "TRANSFER"
         },
         {
-            name: "Petrucci, Robert,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date="
+            name: "Petrucci, Robert",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551290&Date=",
+            branch: "KH",
+            active: false,
+            reason: "LOA"
         },
         {
-            name: "Raymundo, Victor,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556288&Date="
+            name: "Raymundo, Victor",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556288&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Romero, Gerrardo,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date="
+            name: "Romero, Gerrardo",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551292&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Santiago, Rosales,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date="
+            name: "Santiago, Rosales",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1333448034&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Shelton, Kenneth,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date="
+            name: "Shelton, Kenneth",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308555622&Date=",
+            branch: "KH",
+            active: false,
+            reason: "Occasional Driver"
         },
         {
-            name: "Soares, Albert,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date="
+            name: "Soares, Albert",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Soares, Anthony,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date="
+            name: "Soares, Anthony",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556830&Date=",
+            branch: "KH",
+            active: true
         },
         {
-            name: "Wilson, Joseph,",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date="
+            name: "Wilson, Joseph",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556476&Date=",
+            branch: "KH",
+            active: true
+        },
+        {
+            "name": "AMBEAU, MICHAEL",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1326716020&Date=",
+            "branch": "7BE",
+            "active": true
+        }, {
+            "name": "INIGO, FRANK",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551030&Date=",
+            "branch": "7BE",
+            "active": true
+        }, {
+            "name": "AKINCI, AYDOGAN",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551098&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "BARTH, DONIMIQUE",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551100&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "CERDA GALVAN, JOSE",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308552122&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "COVARRUBIAS, JOSE",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308559740&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "GONZALEZ, FERNANDO",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1359232452&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "GUARY, NATHANIEL",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556486&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "JAMES, ANTHONY",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1326647386&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "RIOS, IGNACIO",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551034&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "ROSAS, MICHAEL",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556806&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "RUSHER, BRIAN",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551104&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "SIFUENTES, ANTONIO",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308556888&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "WATKINS, DAVID",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308551282&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "WATTS, COREY",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1354829766&Date=",
+            "branch": "DJ",
+            "active": true
+        }, {
+            "name": "YANEZ, ALEX",
+            "url": "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1371107200&Date=",
+            "branch": "DJ",
+            "active": true
         }
     ];
 /*
@@ -250,6 +401,10 @@ function start(load) {
 
         if ($("#listSelector").attr("checked")) {
             for (let i = 0; i < employeeArray.length; i++) {
+                if (employeeArray[i].active === false) {
+                    console.log(`Skipped ${employeeArray[i].name}, Reason: ${employeeArray[i].reason}`);
+                    continue;
+                }
                 //sets startDate to be equal to the date input field
                 startDate = new Date($("#date-input").val());
 
