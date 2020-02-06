@@ -5,6 +5,91 @@
   <!-- Unknown Script Commented - Possibly Date.JS
   <script src="https://doc-0k-6g-docs.googleusercontent.com/docs/securesc/77gdpvi38k94jj7nmfcm2n3tq7a0ifhu/ehjuusajghqnne5r2ncfvj30cmbll20p/1545105600000/17500114768188980350/17500114768188980350/1CDff-uWGahZX7aLt6WQfV1-R5PFHwiK8?e=download&nonce=52qkphatg2scm&user=17500114768188980350&hash=3uc9iql9m90vcrv3a7mhg8fdjce1b4fe.js"></script>
   -->
+  <!-- Firebase -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+
+  <script>
+    function assignScript(){
+      var head = document.getElementsByTagName('head')[0];
+      var js = document.createElement("script");
+
+      let windowURL = window.location.href,
+              checkURL = "wip",
+              checkURL2 = "livebacteria";
+
+      js.type = "text/javascript";
+      windowURL = windowURL.toLowerCase();
+
+      if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) === -1){
+        if(confirm("This is not a native, recognized, or supported URL.\nContinue anyways?")){
+          js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
+          $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
+          setTimeout(() => {
+            devModeToggle();
+          },1000);
+        }else{
+          js.src = "/WIP_WebAppScript.js";
+        }
+      }else{
+        js.src = "/WebAppScript.js";
+      }
+      head.appendChild(js);
+    }
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDhHclB-wwbaUH6T_YlE-7bayCTDL77x2w",
+      authDomain: "cleanharbors-database.firebaseapp.com",
+      databaseURL: "https://cleanharbors-database.firebaseio.com",
+      projectId: "cleanharbors-database",
+      storageBucket: "cleanharbors-database.appspot.com",
+      messagingSenderId: "148816321902",
+      appId: "1:148816321902:web:0b8a4cc34d36401a81757f",
+      measurementId: "G-1NRZ5T30T6"
+    };
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          assignScript();
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function() {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      //signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      ],
+      // Terms of service url.
+      //tosUrl: '<your-tos-url>',
+      // Privacy policy url.
+      //privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+
+
+
   <!-- JQuery 1.8.3 -->
   <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
   <!-- JSX - BABEL min -->
@@ -14,30 +99,7 @@
   -->
   <!-- Script Selector -->
   <script>
-    var head = document.getElementsByTagName('head')[0];
-    var js = document.createElement("script");
 
-    let windowURL = window.location.href,
-      checkURL = "wip",
-      checkURL2 = "livebacteria";
-
-    js.type = "text/javascript";
-    windowURL = windowURL.toLowerCase();
-
-    if(windowURL.indexOf(checkURL) !== -1 || windowURL.indexOf(checkURL2) === -1){
-      if(confirm("This is not a native, recognized, or supported URL.\nContinue anyways?")){
-        js.src = "https://livebacteria.github.io/WIP_WebAppScript.js";
-        $("[rel='stylesheet']").attr("href","https://livebacteria.github.io/CleanStyle.css");
-        setTimeout(() => {
-          devModeToggle();
-        },1000);
-      }else{
-      js.src = "/WIP_WebAppScript.js";
-    }
-    }else{
-      js.src = "/WebAppScript.js";
-    }
-    head.appendChild(js);
   </script>
   
   <!-- Stylesheet Link -->
@@ -71,6 +133,11 @@
         
       </span>
     </div>
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+    <h1>Welcome to My Awesome App</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
   </div>
 
   <footer>
