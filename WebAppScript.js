@@ -1,4 +1,4 @@
-let currVersion = "1.7.0r | Updated Employee List and Code",
+let currVersion = "1.7.1r | Updated Employee List and Code",
     devMode = false,
     exit = false,
     dvirLogArray = [],
@@ -8,12 +8,6 @@ let currVersion = "1.7.0r | Updated Employee List and Code",
             name: "Flores, Jose",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date=",
             branch: "3M",
-            active: true
-        },
-        {
-            name: "Brooks, Eddie",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1375322368&Date=",
-            branch: "KH",
             active: true
         },
         {
@@ -116,6 +110,12 @@ let currVersion = "1.7.0r | Updated Employee List and Code",
         {
             name: "Allen, Rashaan",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308558196&Date=",
+            branch: "KH",
+            active: true
+        },
+        {
+            name: "Brooks, Eddie",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1375322368&Date=",
             branch: "KH",
             active: true
         },
