@@ -11,6 +11,12 @@ let currVersion = "1.7.0r | Updated Employee List and Code",
             active: true
         },
         {
+            name: "Brooks, Eddie",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1375322368&Date=",
+            branch: "KH",
+            active: true
+        },
+        {
             name: "Jeronimo, Jesus",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date=",
             branch: "4B",
