@@ -7,14 +7,16 @@ let currVersion = "1.7.1r | Updated Employee List and Code",
         {
             name: "Flores, Jose",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1335257756&Date=",
-            branch: "3M",
-            active: true
+            branch: "4B",
+            active: false,
+            reason: "TRANSFER"
         },
         {
             name: "Jeronimo, Jesus",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1308553144&Date=",
             branch: "4B",
-            active: true
+            active: false,
+            reason: "TRANSFER"
         },
         {
             name: "Sing, Anil",
