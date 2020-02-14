@@ -1,4 +1,4 @@
-let currVersion = "1.7.1r | Updated Employee List and Code",
+let currVersion = "1.7.2r | Updated Employee List and Code",
     devMode = false,
     exit = false,
     dvirLogArray = [],
