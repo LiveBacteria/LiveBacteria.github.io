@@ -25,6 +25,12 @@ let currVersion = "1.7.2r | Updated Employee List and Code",
             active: true
         },
         {
+            name: "Soares, Albert",
+            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date=",
+            branch: "3M",
+            active: true
+        },
+        {
             name: "Wilson, David",
             url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1353574072&Date=",
             branch: "3M",
@@ -195,12 +201,6 @@ let currVersion = "1.7.2r | Updated Employee List and Code",
             branch: "KH",
             active: false,
             reason: "Occasional Driver"
-        },
-        {
-            name: "Soares, Albert",
-            url: "https://cleanharbors.platform.telogis.com/handler/driver/dailylog.ashx?DriverId=1330980682&Date=",
-            branch: "KH",
-            active: true
         },
         {
             name: "Soares, Anthony",
